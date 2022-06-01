@@ -1,15 +1,18 @@
+from pickle import FALSE
 from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
 
-# Configure application
+# Configure application]
 app = Flask(__name__)
+db = SQLAlchemy(app)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///ctw.sqlite3'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 
-@app.route("/members")
+@app.route("/")
 def members():
     return{"Volunteers": ["1", "2"]}
 
-if __name__ == "__main__":
-    app.run(debug=True)
 #TODO List volunteers
 
 
@@ -26,3 +29,6 @@ if __name__ == "__main__":
 
 
 #TODO move seniors to different volunteers
+
+if __name__ == "__main__":
+    app.run(debug=True)
