@@ -1,16 +1,25 @@
-from pickle import FALSE
+from dotenv import load_dotenv
+import os
+from datetime import datetime
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 
-# Configure application]
+# Environment variables
+load_dotenv()
+URI = os.getenv("URI")
+print(URI)
+# Configure application
 app = Flask(__name__)
-db = SQLAlchemy(app)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///ctw.sqlite3'
+# Configure Database
+app.config['SQLALCHEMY_DATABASE_URI'] = URI
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
+db = SQLAlchemy(app)
 
 @app.route("/")
 def members():
+    new_user = users(username="somevar", email="example@example.com")
+    db.session.add(new_user)
+    db.session.commit()
     return{"Volunteers": ["1", "2"]}
 
 #TODO List volunteers
