@@ -1,19 +1,35 @@
+from ctypes.wintypes import INT
+from enum import unique
+from MySQLdb import Date
 from dotenv import load_dotenv
 import os
 from datetime import datetime
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import CHAR, DATE, TIME, PrimaryKeyConstraint
 
 # Environment variables
 load_dotenv()
 URI = os.getenv("URI")
 print(URI)
+
 # Configure application
 app = Flask(__name__)
+
 # Configure Database
 app.config['SQLALCHEMY_DATABASE_URI'] = URI
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
+
+# DB model
+class calls(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    volunteerName = db.Column(db.String(50), nullable=False)
+    seniorName = db.Column(db.String(50), nullable=False)
+    phoneNumber = db.Column(db.INT, nullable=False, unique=True)
+    Date = db.Column(DATE)
+    Time = db.Column(TIME)
+
 
 @app.route("/")
 def members():
