@@ -1,12 +1,10 @@
-from ctypes.wintypes import INT
 from enum import unique
-from MySQLdb import Date
 from dotenv import load_dotenv
 import os
 from datetime import datetime
-from flask import Flask
+from flask import Flask, request
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import CHAR, DATE, TIME, PrimaryKeyConstraint
+
 
 # Environment variables
 load_dotenv()
@@ -26,17 +24,40 @@ class calls(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     volunteerName = db.Column(db.String(50), nullable=False)
     seniorName = db.Column(db.String(50), nullable=False)
-    phoneNumber = db.Column(db.INT, nullable=False, unique=True)
-    Date = db.Column(DATE)
-    Time = db.Column(TIME)
+    phoneNumber = db.Column(db.INT)
+    Date = db.Column(db.DATE)
+    Time = db.Column(db.TIME)
 
 
-@app.route("/")
+@app.route("/", methods=["GET", "POST"])
+
+# def send_daa():
+#     return{}
 def members():
-    new_user = users(username="somevar", email="example@example.com")
-    db.session.add(new_user)
+    new_calls = calls(volunteerName="Arhum", seniorName="somename", phoneNumber="343434434440")
+    db.session.add(new_calls)
     db.session.commit()
     return{"Volunteers": ["1", "2"]}
+
+# def add_Members():
+#     volunteerName = request.json['volunteerName']
+#     seniorName = request.json['seniorName']
+#     phoneNumber = request.json['phoneNumber']
+#     Date = request.json['Date']
+#     Time = request.json['Time']
+
+#     addMembers = Members(
+#         volunteerName=volunteerName,
+#         seniorName=seniorName,
+#         phoneNumber=phoneNumber,
+#         Date=Date,
+#         Time=Time
+#     )
+
+#     db.session.add(addMembers)
+#     db.session.commit()
+#     return
+
 
 #TODO List volunteers
 
