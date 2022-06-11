@@ -20,7 +20,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
 # DB model
-class calls(db.Model):
+class Calls(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     volunteerName = db.Column(db.String(50), nullable=False)
     seniorName = db.Column(db.String(50), nullable=False)
@@ -28,22 +28,43 @@ class calls(db.Model):
     Date = db.Column(db.DATE)
     Time = db.Column(db.TIME)
 
+    def to_json(self):
+        return{
+            'volunteerName': self.volunteerName,
+            'seniorName': self.seniorName,
+            'phoneNumber': self.phoneNumber,
+            'Date': self.Date.strftime('%Y/%m/%d'),
+            'Time': self.Time.strftime('%H:%M:%S')
+        }
 
-@app.route("/calls", methods=["GET"])
+@app.route("/add_calls", methods=["POST"])
 
 def get_calls():
-    return
-    [
-        {
-        "id": "1",
-        "voulnteerName": "Somename",
-        "seniorName": "somename",
-        "phoneNumber": "1234567890",
-        "Date": "",
-        "Time": ""
+    calls_data = request.get_json()
 
-        }
-    ]
+    new_calls = Calls(
+        volunteerName=calls_data["volunteerName"],
+        seniorName=calls_data["seniorName"],
+        phoneNumber=calls_data["phoneNumber"],
+        Date=calls_data["Date"],
+        Time=calls_data["Time"]
+    )
+
+    db.session.add(new_calls)
+    db.session.commit()
+
+    return 'done', 201
+
+@app.route('/call', methods=["GET"])
+def call():
+    call_list = Calls.query.all()
+    return {
+        "calls": [ call.to_json() for call in call_list ]
+    }
+
+    
+    
+    
 
 
 
