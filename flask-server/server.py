@@ -24,57 +24,28 @@ class calls(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     volunteerName = db.Column(db.String(50), nullable=False)
     seniorName = db.Column(db.String(50), nullable=False)
-    phoneNumber = db.Column(db.INT)
+    phoneNumber = db.Column(db.String)
     Date = db.Column(db.DATE)
     Time = db.Column(db.TIME)
 
 
-@app.route("/", methods=["GET", "POST"])
+@app.route("/calls", methods=["GET"])
 
-# def send_daa():
-#     return{}
-def members():
-    new_calls = calls(volunteerName="Arhum", seniorName="somename", phoneNumber="343434434440")
-    db.session.add(new_calls)
-    db.session.commit()
-    return{"Volunteers": ["1", "2"]}
+def get_calls():
+    return
+    [
+        {
+        "id": "1",
+        "voulnteerName": "Somename",
+        "seniorName": "somename",
+        "phoneNumber": "1234567890",
+        "Date": "",
+        "Time": ""
 
-# def add_Members():
-#     volunteerName = request.json['volunteerName']
-#     seniorName = request.json['seniorName']
-#     phoneNumber = request.json['phoneNumber']
-#     Date = request.json['Date']
-#     Time = request.json['Time']
-
-#     addMembers = Members(
-#         volunteerName=volunteerName,
-#         seniorName=seniorName,
-#         phoneNumber=phoneNumber,
-#         Date=Date,
-#         Time=Time
-#     )
-
-#     db.session.add(addMembers)
-#     db.session.commit()
-#     return
+        }
+    ]
 
 
-#TODO List volunteers
-
-
-#TODO Assign seniors to volunteers
-
-
-#TODO Assign phone numbers to each volunteer
-
-
-#TODO Assign times for volunteer calling 
-
-
-#TODO  move volunteers to different seniors
-
-
-#TODO move seniors to different volunteers
 
 if __name__ == "__main__":
     app.run(debug=True)
