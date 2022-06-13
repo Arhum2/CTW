@@ -1,17 +1,19 @@
-import MuiTable from "./table";
+import Table, { TableUi } from "./components/table";
 import React, {useState, useEffect} from "react";
 
 function App() {
+  const [Calls, setCalls] = useState([]);
+
   useEffect(() => {
    fetch('/call').then(response => response.json().then(data => {
-     console.log(data);
+     setCalls(data);
    })) 
   }, [])
 
   return (
     <div className="App">
       <h1>Hello World!</h1>
-      <MuiTable></MuiTable>
+      <TableUi Calls={Calls} />
     </div>
   );
 }
