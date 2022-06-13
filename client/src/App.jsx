@@ -1,4 +1,4 @@
-import Table, { TableUi } from "./components/table";
+import TableUi from "./components/table";
 import React, {useState, useEffect} from "react";
 
 function App() {
@@ -6,7 +6,7 @@ function App() {
 
   useEffect(() => {
    fetch('/call').then(response => response.json().then(data => {
-     setCalls(data);
+     setCalls(data.Calls);
    })) 
   }, [])
 
