@@ -9,7 +9,7 @@ from flask_sqlalchemy import SQLAlchemy
 # Environment variables
 load_dotenv()
 URI = os.getenv("URI")
-print(URI)
+#print(URI)
 
 # Configure application
 app = Flask(__name__)
@@ -18,6 +18,7 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = URI
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
+db.create_all()
 
 # DB model
 class Calls(db.Model):

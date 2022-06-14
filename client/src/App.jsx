@@ -10,6 +10,8 @@ function App() {
    })) 
   }, [])
 
+  console.log(Calls);
+
   return (
     <div className="App">
       <h1>Hello World!</h1>
