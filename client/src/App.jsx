@@ -2,20 +2,20 @@ import TableUi from "./components/table";
 import React, {useState, useEffect} from "react";
 
 function App() {
-  const [Calls, setCalls] = useState([]);
+  const [call, setCalls] = useState([]);
 
   useEffect(() => {
    fetch('/call').then(response => response.json().then(data => {
-     setCalls(data.Calls);
-   })) 
-  }, [])
+     setCalls(data.call);
+   })); 
+  }, []);
 
-  console.log(Calls);
+  console.log(call);
 
   return (
     <div className="App">
       <h1>Hello World!</h1>
-      <TableUi Calls={Calls} />
+      <TableUi call={call} />
     </div>
   );
 }
