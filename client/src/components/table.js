@@ -24,9 +24,8 @@ export const TableUI = ({ calls }) => {
             {calls?.map((row) => (
               <TableRow key={row.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                 <TableCell component="th" scope="row">
-                  {row.name}
+                  {row.volunteerName}
                 </TableCell>
-                <TableCell align="right">{row.volunteerName}</TableCell>
                 <TableCell align="right">{row.seniorName}</TableCell>
                 <TableCell align="right">{row.Date}</TableCell>
                 <TableCell align="right">{row.Time}</TableCell>
