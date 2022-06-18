@@ -1,7 +1,10 @@
 import TableUi from "./components/table";
+import Form from "./components/form";
 import React, {useState, useEffect} from "react";
 
 function App() {
+
+  // Fetching and handling Flask data
   const [calls, setCalls] = useState([]);
 
   useEffect(() => {
@@ -10,10 +13,13 @@ function App() {
    })); 
   }, []);
 
+
+  
   return (
     <div className="App">
       <h1>Hello World!</h1>
       <TableUi calls={calls} />
+      <Form />
     </div>
   );
 }
