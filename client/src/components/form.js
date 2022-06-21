@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
-import { LocalizationProvider } from '@mui/lab';
-import AdapterDateFns from '@mui/lab/AdapterDateFns'
 import { TextField, Button } from '@mui/material';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
 class Form extends React.Component {
+    
     state={
         volunteerName: '',
         seniorName: '',
@@ -33,13 +35,19 @@ class Form extends React.Component {
 
     render() {
         return(
-            <LocalizationProvider dateAdapter={AdapterDateFns}>
             <form align='center' style={{marginTop: 45}}>
              <TextField name='volunteerName' id="outlined-basic" label="Volunteer Name" variant="outlined" value={this.state.volunteerName} onChange={e => this.change(e)} />
              <br/>
              <TextField name='seniorName' id="outlined-basic" label="Senior Name" variant="outlined" value={this.state.seniorName} onChange={e => this.change(e)} />
              <br/>   
-             <TextField name='Date' id="outlined-basic" label="Date" variant="outlined" value={this.state.Date} onChange={e => this.change(e)} />   
+             <LocalizationProvider dateAdapter={AdapterDateFns} name='Date' id="outlined-basic" label="Date" variant="outlined" onChange={e => this.change(e)}>
+               <DatePicker
+                    label="Basic example"
+                    value={this.state.Date}
+                    onChange={e => this.change(e)}
+                    renderInput={(params) => <TextField {...params} />}
+                />   
+             </LocalizationProvider>   
              <br/>
              <TextField name='Time' id="outlined-basic" label="Time" variant="outlined" value={this.state.Time} onChange={e => this.change(e)} />
              <br/>   
@@ -60,7 +68,6 @@ class Form extends React.Component {
                 }
              }}>Send</Button>           
             </form>
-            </LocalizationProvider>
         );
     }
 }

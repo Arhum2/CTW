@@ -1,7 +1,7 @@
 import TableUi from "./components/table";
 import Form from "./components/form";
 import React, {useState, useEffect} from "react";
-import { MuiPicker } from "./components/MuiPicker";
+
 
 function App() {
 
@@ -21,7 +21,6 @@ function App() {
       <h1>Hello World!</h1>
       <TableUi calls={calls} />
       <Form />
-      <MuiPicker/>
     </div>
   );
 }
