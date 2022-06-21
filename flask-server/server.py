@@ -4,6 +4,7 @@ import os
 from datetime import datetime
 from flask import Flask, request
 from flask_sqlalchemy import SQLAlchemy
+from itsdangerous import json
 
 
 # Environment variables
@@ -41,20 +42,21 @@ class Calls(db.Model):
 @app.route("/add_calls", methods=["POST"])
 
 def get_calls():
-    calls_data = request.get_json()
+    if request.method == 'POST':
+        json = request.get_json()
 
-    new_calls = Calls(
-        volunteerName=calls_data["volunteerName"],
-        seniorName=calls_data["seniorName"],
-        phoneNumber=calls_data["phoneNumber"],
-        Date=calls_data["Date"],
-        Time=calls_data["Time"]
-    )
+        new_calls = Calls(
+            volunteerName = request.json["volunteerName"],
+            seniorName = request.json["seniorName"],
+            phoneNumber = request.json["phoneNumber"],
+            Date = request.json["Date"],
+            Time = request.json["Time"]
+        )
 
-    db.session.add(new_calls)
-    db.session.commit()
+        db.session.add(new_calls)
+        db.session.commit()
 
-    return 'done', 201
+        return 'done', 201
 
 @app.route('/call', methods=["GET"])
 def call():

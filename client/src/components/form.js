@@ -1,5 +1,7 @@
-import React, { useState } from 'react'
-import { TextField, Button } from '@mui/material'
+import React, { useState } from 'react';
+import { LocalizationProvider } from '@mui/lab';
+import AdapterDateFns from '@mui/lab/AdapterDateFns'
+import { TextField, Button } from '@mui/material';
 
 class Form extends React.Component {
     state={
@@ -31,6 +33,7 @@ class Form extends React.Component {
 
     render() {
         return(
+            <LocalizationProvider dateAdapter={AdapterDateFns}>
             <form align='center' style={{marginTop: 45}}>
              <TextField name='volunteerName' id="outlined-basic" label="Volunteer Name" variant="outlined" value={this.state.volunteerName} onChange={e => this.change(e)} />
              <br/>
@@ -55,8 +58,9 @@ class Form extends React.Component {
                 if (response.ok) {
                     console.log('response worked')
                 }
-             }}>Send</Button>            
+             }}>Send</Button>           
             </form>
+            </LocalizationProvider>
         );
     }
 }
