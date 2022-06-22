@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { TextField, Button } from '@mui/material';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
@@ -14,11 +14,10 @@ class Form extends React.Component {
         phoneNumber: ''
     };
 
-    change = e => {
+    change = (e) => {
         this.setState({
             [e.target.name]: e.target.value
         });
-
     };
 
     onSubmit = e => {
@@ -40,13 +39,14 @@ class Form extends React.Component {
              <br/>
              <TextField name='seniorName' id="outlined-basic" label="Senior Name" variant="outlined" value={this.state.seniorName} onChange={e => this.change(e)} />
              <br/>   
-             <LocalizationProvider dateAdapter={AdapterDateFns} name='Date' id="outlined-basic" label="Date" variant="outlined" onChange={e => this.change(e)}>
-               <DatePicker
-                    label="Basic example"
-                    value={this.state.Date}
-                    onChange={e => this.change(e)}
-                    renderInput={(params) => <TextField {...params} />}
-                />   
+             <LocalizationProvider dateAdapter={AdapterDateFns} name='date' id="outlined-basic" label="Date" variant="outlined">
+             <DatePicker
+                name='Date'
+                label="Date"
+                value={this.state.Date}
+                onChange={e => this.change(e)}
+                renderInput={(params) => <TextField {...params} />}
+            />   
              </LocalizationProvider>   
              <br/>
              <TextField name='Time' id="outlined-basic" label="Time" variant="outlined" value={this.state.Time} onChange={e => this.change(e)} />
