@@ -9,16 +9,20 @@ class Form extends React.Component {
     state={
         volunteerName: '',
         seniorName: '',
-        Date: '',
-        Time: '',
+        dateValue: '',
+        timeValue: '',
         phoneNumber: ''
     };
 
-    change = (e) => {
+    onChange = (e) => {
         this.setState({
             [e.target.name]: e.target.value
-        });
+        })
     };
+
+    onDateChange = (e) => {
+        this.setState({dateValue: e})
+    }
 
     onSubmit = e => {
         e.preventDefault();
@@ -26,8 +30,8 @@ class Form extends React.Component {
         this.setState({
             volunteerName: '',
             seniorName: '',
-            Date: '',
-            Time: '',
+            dateValue: '',
+            timeValue: '',
             phoneNumber: ''
         })
     }
@@ -35,24 +39,26 @@ class Form extends React.Component {
     render() {
         return(
             <form align='center' style={{marginTop: 45}}>
-             <TextField name='volunteerName' id="outlined-basic" label="Volunteer Name" variant="outlined" value={this.state.volunteerName} onChange={e => this.change(e)} />
+             <TextField name='volunteerName' id="outlined-basic" label="Volunteer Name" variant="outlined" value={this.state.volunteerName} onChange={e => this.onChange(e)} />
              <br/>
-             <TextField name='seniorName' id="outlined-basic" label="Senior Name" variant="outlined" value={this.state.seniorName} onChange={e => this.change(e)} />
+             <TextField name='seniorName' id="outlined-basic" label="Senior Name" variant="outlined" value={this.state.seniorName} onChange={e => this.onChange(e)} />
              <br/>   
              <LocalizationProvider dateAdapter={AdapterDateFns} name='date' id="outlined-basic" label="Date" variant="outlined">
              <DatePicker
-                name='Date'
+                name='dateValue'
                 label="Date"
-                value={this.state.Date}
-                onChange={e => this.change(e)}
+                type="date"
+                value={this.state.dateValue}
+                onChange={e => this.onDateChange(e)}
                 renderInput={(params) => <TextField {...params} />}
             />   
              </LocalizationProvider>   
              <br/>
-             <TextField name='Time' id="outlined-basic" label="Time" variant="outlined" value={this.state.Time} onChange={e => this.change(e)} />
+             <TextField name='timeValue' id="outlined-basic" label="Time" variant="outlined" value={this.state.Time} onChange={e => this.onChange(e)} />
              <br/>   
-             <TextField name='phoneNumber' id="outlined-basic" label="Phone Number" variant="outlined" value={this.state.phoneNumber} onChange={e => this.change(e)} />  
-             <br/> 
+             <TextField name='phoneNumber' id="outlined-basic" label="Phone Number" variant="outlined" value={this.state.phoneNumber} onChange={e => this.onChange(e)} />  
+             <br/>
+             {/* <Button variant="contained" onClick={e => this.onSubmit(e)}>Send</Button> */}
              <Button variant="contained" onClick={async () => {
                 const response = await fetch('/add_calls', {
                     method: 'POST',
