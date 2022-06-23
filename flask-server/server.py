@@ -4,7 +4,6 @@ import os
 from datetime import datetime
 from flask import Flask, request
 from flask_sqlalchemy import SQLAlchemy
-from itsdangerous import json
 
 
 # Environment variables
