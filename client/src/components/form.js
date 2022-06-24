@@ -3,6 +3,7 @@ import { TextField, Button } from '@mui/material';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { TimePicker } from  '@mui/x-date-pickers/TimePicker';
 
 class Form extends React.Component {
     
@@ -21,7 +22,13 @@ class Form extends React.Component {
     };
 
     onDateChange = (e) => {
+        console.log(e)
         this.setState({dateValue: e})
+    }
+
+    onTimeChange = (e) => {
+        console.log(e)
+        this.setState({timeValue: e})
     }
 
     onSubmit = e => {
@@ -46,16 +53,27 @@ class Form extends React.Component {
              <LocalizationProvider dateAdapter={AdapterDateFns} name='date' id="outlined-basic" label="Date" variant="outlined">
              <DatePicker
                 name='dateValue'
+                inputFormat= 'yyyy/MM/dd'
                 label="Date"
                 type="date"
+                mask = '____/__/__'
                 value={this.state.dateValue}
                 onChange={e => this.onDateChange(e)}
                 renderInput={(params) => <TextField {...params} />}
             />   
              </LocalizationProvider>   
              <br/>
-             <TextField name='timeValue' id="outlined-basic" label="Time" variant="outlined" value={this.state.Time} onChange={e => this.onChange(e)} />
-             <br/>   
+             <LocalizationProvider dateAdapter={AdapterDateFns}>
+                <TimePicker
+                    name='timeValue'
+                    label="Time"
+                    type="time"
+                    value={this.state.timeValue}
+                    onChange={e => this.onTimeChange(e)}
+                    renderInput={(params) => <TextField {...params} />}
+                />
+            </LocalizationProvider>
+            <br/>
              <TextField name='phoneNumber' id="outlined-basic" label="Phone Number" variant="outlined" value={this.state.phoneNumber} onChange={e => this.onChange(e)} />  
              <br/>
              {/* <Button variant="contained" onClick={e => this.onSubmit(e)}>Send</Button> */}

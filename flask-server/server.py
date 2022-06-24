@@ -23,8 +23,8 @@ db = SQLAlchemy(app)
 # DB model
 class Calls(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    volunteerName = db.Column(db.String(50), nullable=False)
-    seniorName = db.Column(db.String(50), nullable=False)
+    volunteerName = db.Column(db.String(50))
+    seniorName = db.Column(db.String(50))
     phoneNumber = db.Column(db.String)
     Date = db.Column(db.DATE)
     Time = db.Column(db.TIME)
@@ -34,8 +34,8 @@ class Calls(db.Model):
             'volunteerName': self.volunteerName,
             'seniorName': self.seniorName,
             'phoneNumber': self.phoneNumber,
-            'Date': self.Date.strftime('%Y/%m/%d'),
-            'Time': self.Time.strftime('%H:%M:%S')
+            'Date': self.Date.strftime('%Y-%m-%d'),
+            'Time': self.Time.strftime('%H:%M')
         }
 
 @app.route("/add_calls", methods=["POST"])
