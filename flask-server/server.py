@@ -48,8 +48,8 @@ def get_calls():
             volunteerName = request.json["volunteerName"],
             seniorName = request.json["seniorName"],
             phoneNumber = request.json["phoneNumber"],
-            Date = request.json["Date"],
-            Time = request.json["Time"]
+            Date = request.json["dateValue"],
+            Time = request.json["timeValue"]
         )
 
         db.session.add(new_calls)
