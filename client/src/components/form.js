@@ -70,7 +70,7 @@ class Form extends React.Component {
                     label="Time"
                     type="time"
                     value={this.state.timeValue}
-                    onChange={e => this.onTimeChange(e)}
+                    onChange={e => this.onTimeChange(moment(e).format('hh:mm'))}
                     renderInput={(params) => <TextField {...params} />}
                 />
             </LocalizationProvider>
