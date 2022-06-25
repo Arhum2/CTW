@@ -34,7 +34,7 @@ class Calls(db.Model):
             'volunteerName': self.volunteerName,
             'seniorName': self.seniorName,
             'phoneNumber': self.phoneNumber,
-            'Date': self.Date.strftime('%Y-%m-%d'),
+            'Date': self.Date.strftime('%Y/%m/%d'),
             'Time': self.Time.strftime('%H:%M')
         }
 

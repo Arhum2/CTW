@@ -4,6 +4,7 @@ import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { TimePicker } from  '@mui/x-date-pickers/TimePicker';
+import moment from 'moment';
 
 class Form extends React.Component {
     
@@ -58,7 +59,7 @@ class Form extends React.Component {
                 type="date"
                 mask = '____/__/__'
                 value={this.state.dateValue}
-                onChange={e => this.onDateChange(e)}
+                onChange={e => this.onDateChange(moment(e).format('YYYY/MM/DD'))}
                 renderInput={(params) => <TextField {...params} />}
             />   
              </LocalizationProvider>   
