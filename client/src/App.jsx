@@ -1,6 +1,7 @@
 import TableUi from "./components/table";
 import Form from "./components/form";
-import React, {useState, useEffect, state} from "react";
+import React, {useState, useEffect} from "react";
+import Grid from "@material-ui/core/Grid";
 import { Button } from "@mui/material";
 
 
@@ -21,7 +22,9 @@ function App() {
     <div className="App">
       <h1>Hello World!</h1>
       <TableUi calls={calls} />
-      <Button variant='contained' onClick={() => setState(!state)}>Add Call</Button>
+      <Grid container justify='center'>
+        <Button style={{marginTop: 45}} variant='contained' onClick={() => setState(!state)}>Add Call</Button>
+      </Grid>
       { state && <Form/>}
     </div>
   );
