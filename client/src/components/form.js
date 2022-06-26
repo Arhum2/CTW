@@ -32,18 +32,6 @@ class Form extends React.Component {
         this.setState({timeValue: e})
     }
 
-    onSubmit = e => {
-        e.preventDefault();
-        console.log(this.state);
-        this.setState({
-            volunteerName: '',
-            seniorName: '',
-            dateValue: '',
-            timeValue: '',
-            phoneNumber: ''
-        })
-    }
-
     render() {
         return(
             <form align='center' style={{marginTop: 45}}>
@@ -77,7 +65,6 @@ class Form extends React.Component {
             <br/>
              <TextField name='phoneNumber' id="outlined-basic" label="Phone Number" variant="outlined" value={this.state.phoneNumber} onChange={e => this.onChange(e)} />  
              <br/>
-             {/* <Button variant="contained" onClick={e => this.onSubmit(e)}>Send</Button> */}
              <Button variant="contained" onClick={async () => {
                 const response = await fetch('/add_calls', {
                     method: 'POST',
