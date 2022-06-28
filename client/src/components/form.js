@@ -76,6 +76,13 @@ class Form extends React.Component {
                 })
 
                 if (response.ok) {
+                    this.setState({
+                        volunteerName: '',
+                        seniorName: '',
+                        dateValue: '',
+                        timeValue: '',
+                        phoneNumber: '' 
+                    })
                     console.log('response worked')
                 }
              }}>Send</Button>           
