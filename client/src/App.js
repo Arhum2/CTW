@@ -1,40 +1,54 @@
 import TableUi from "./components/table";
-import Form from "./components/form";
+import AddCall from "./components/AddCall";
 import React, {useState, useEffect} from "react";
-import { Button } from "@mui/material";
 import './index.css'
 
 
 function App() {
 
-  // Fetching and handling Flask data
   const [calls, setCalls] = useState([]);
+  const [showAddCall, setShowAddCall] = useState(false);
+
+
+  // Sets state with data
   useEffect(() => {
-   fetch('/call').then(response => response.json().then(data => {
-     setCalls(data.calls)
-   })); 
-  }, []);
+    const getCalls = async () => {
+      const callsFromServer = await fetchCalls()
+      setCalls(callsFromServer)
+      console.log(calls)
+    }
+   getCalls()
+  }, [])
 
+  //Fetch Call data
+  const fetchCalls = async () => {
+    const res = await fetch('/call')
+    const data = await res.json()
 
+    return(data)
+   }
 
-  const [state, setState] = useState(false);
+  const addCall = async (calls) => {
+    const res = await fetch ('/add_calls', {
+      method: 'POST',
+      mode: 'cors',
+      headers: {
+          'Content-type': 'application/json'
+      },
+      body: JSON.stringify(calls)
+  })}
   
   return (
     <div className="container">
       <h1>CTW Call Planner</h1>
       
       {/*Table component*/}
-      {calls.length > 0 ? <TableUi calls={calls} /> : 'No Calls'}
+      {calls.length > 0 ? <TableUi calls={calls} onAdd={addCall} /> : 'No Calls'}
 
       {/*Button component*/}      
-      <Button className='btn' style={{
-        
-        marginTop: 45, 
-        margin: '0 auto', 
-        display: 'flex'}} 
-        variant='contained' 
-        onClick={() => setState(!state)}>Add Call</Button>
-      { state && <Form/>}
+      <button className='btn'
+        onClick={() => setShowAddCall(!showAddCall)}>Add Call</button>
+      { showAddCall && <AddCall/>}
     </div>
   );
 }
