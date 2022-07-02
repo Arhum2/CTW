@@ -36,14 +36,19 @@ function App() {
           'Content-type': 'application/json'
       },
       body: JSON.stringify(calls)
-  })}
+  })
+
+  const data = await res.json()
+
+  setCalls([...calls, data])
+}
   
   return (
     <div className="container">
       <h1>CTW Call Planner</h1>
       
       {/*Table component*/}
-      {calls.length > 0 ? <TableUi calls={calls} onAdd={addCall} /> : 'No Calls'}
+      {calls.length > 0 ? <TableUi calls={calls}  addCall={addCall} /> : 'No Calls'}
 
       {/*Button component*/}      
       <button className='btn'
