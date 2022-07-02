@@ -25,13 +25,24 @@ const AddCall = ({ addCall }) => {
         setPhoneNumber('')
     }
 
+    const onDateChange = (e) => {
+        setDateValue({dateValue: e})
+    }
+
+    const onTimeChange = (e) => {
+        setTimeValue({timeValue: e})
+    }
+
+    console.log(dateValue)
+    console.log(timeValue)
+
     return (
         <form align='center' className='add=form' onSubmit={onSubmit}>
              <TextField name='volunteerName' id="outlined-basic" label="Volunteer Name" variant="outlined" value={volunteerName} onChange={e => setVolunteerName(e.target.value)} />
              <br/>
              <TextField name='seniorName' id="outlined-basic" label="Senior Name" variant="outlined" value={seniorName} onChange={e => setSeniorName(e.target.value)} />
              <br/>   
-             <LocalizationProvider dateAdapter={AdapterDateFns} name='date' id="outlined-basic" label="Date" variant="outlined">
+             <LocalizationProvider dateAdapter={AdapterDateFns} name='dateValue' id="outlined-basic" label="Date" variant="outlined">
              <DatePicker
                 name='dateValue'
                 inputFormat= 'yyyy/MM/dd'
@@ -39,7 +50,7 @@ const AddCall = ({ addCall }) => {
                 type="date"
                 mask = '____/__/__'
                 value={dateValue}
-                onChange={e => setDateValue(moment(e.target.value).format('YYYY/MM/DD'))}
+                onChange={e => onDateChange(moment(e).format('yyyy/MM/DD'))}
                 renderInput={(params) => <TextField {...params} />}
             />   
              </LocalizationProvider>   
@@ -50,14 +61,14 @@ const AddCall = ({ addCall }) => {
                     label="Time"
                     type="time"
                     value={timeValue}
-                    onChange={e => setTimeValue(moment(e.target.value).format('hh:mm'))}
+                    onChange={e => onTimeChange(moment(e).format('hh:mm'))}
                     renderInput={(params) => <TextField {...params} />}
                 />
             </LocalizationProvider>
             <br/>
              <TextField name='phoneNumber' id="outlined-basic" label="Phone Number" variant="outlined" value={phoneNumber} onChange={e => setPhoneNumber(e.target.value)} />  
              <br/>
-             <button className="btn">Add</button>       
+             <input type='submit' value='Save Task' className="btn"></input>   
             </form>
     )
 
