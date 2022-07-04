@@ -1,4 +1,4 @@
-import TableUi from "./components/table";
+import TableUI from "./components/TableUI";
 import AddCall from "./components/AddCall";
 import React, {useState, useEffect} from "react";
 import './index.css'
@@ -15,7 +15,6 @@ function App() {
     const getCalls = async () => {
       const callsFromServer = await fetchCalls()
       setCalls(callsFromServer)
-      console.log(calls)
     }
    getCalls()
   }, [])
@@ -25,9 +24,10 @@ function App() {
     const res = await fetch('/call')
     const data = await res.json()
 
-    return(data)
+    return data.calls
    }
 
+  //Adds Call
   const addCall = async (calls) => {
     const res = await fetch ('/add_calls', {
       method: 'POST',
@@ -35,7 +35,7 @@ function App() {
       headers: {
           'Content-type': 'application/json'
       },
-      body: JSON.stringify(calls)
+      body: JSON.stringify(calls),
   })
 
   const data = await res.json()
@@ -44,16 +44,17 @@ function App() {
 }
   
   return (
-    <div className="container">
+    <div>
       <h1>CTW Call Planner</h1>
       
       {/*Table component*/}
-      {calls.length > 0 ? <TableUi calls={calls}  addCall={addCall} /> : 'No Calls'}
+      <TableUI calls={calls}/>
+      {/* {calls.length > 0 ? <TableUi calls={calls}  addCall={addCall} /> : 'No Calls'} */}
 
-      {/*Button component*/}      
+      {/*Form & Button component*/}      
       <button className='btn'
         onClick={() => setShowAddCall(!showAddCall)}>Add Call</button>
-      { showAddCall && <AddCall/>}
+      { showAddCall && <AddCall onAdd={addCall}/>}
     </div>
   );
 }

@@ -7,7 +7,7 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { TimePicker } from  '@mui/x-date-pickers/TimePicker';
 import moment from 'moment';
 
-const AddCall = ({ addCall }) => {
+const AddCall = ({ onAdd }) => {
     const [volunteerName, setVolunteerName] = useState('')
     const [seniorName, setSeniorName] = useState('')
     const [dateValue, setDateValue] = useState('')
@@ -17,7 +17,7 @@ const AddCall = ({ addCall }) => {
     const onSubmit = (e) => {
         e.preventDefault()
 
-        addCall({ volunteerName, seniorName, dateValue, timeValue, phoneNumber })
+        onAdd({ volunteerName, seniorName, dateValue, timeValue, phoneNumber })
         setVolunteerName('')
         setSeniorName('')
         setDateValue('')
