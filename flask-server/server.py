@@ -25,7 +25,7 @@ class Calls(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     volunteerName = db.Column(db.String(50))
     seniorName = db.Column(db.String(50))
-    phoneNumber = db.Column(db.String)
+    phoneNumber = db.Column(db.String(50))
     Date = db.Column(db.DATE)
     Time = db.Column(db.TIME)
 
@@ -35,7 +35,7 @@ class Calls(db.Model):
             'seniorName': self.seniorName,
             'phoneNumber': self.phoneNumber,
             'Date': self.Date.strftime('%Y/%m/%d'),
-            'Time': self.Time.strftime('%H:%M')
+            'Time': self.Time.strftime('%I:%M %p')
         }
 
 @app.route("/add_calls", methods=["POST"])

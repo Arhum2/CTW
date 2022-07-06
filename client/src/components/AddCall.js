@@ -15,9 +15,17 @@ const AddCall = ({ onAdd }) => {
     const [phoneNumber, setPhoneNumber] = useState('')
 
     const onSubmit = (e) => {
-        e.preventDefault()
 
-        onAdd({ volunteerName, seniorName, dateValue, timeValue, phoneNumber })
+        console.log(timeValue)
+        e.preventDefault()
+        
+        onAdd({ 
+            volunteerName, 
+            seniorName, 
+            dateValue, 
+            timeValue,
+            phoneNumber 
+        })
         setVolunteerName('')
         setSeniorName('')
         setDateValue('')
@@ -26,15 +34,20 @@ const AddCall = ({ onAdd }) => {
     }
 
     const onDateChange = (e) => {
-        setDateValue({dateValue: e})
-    }
+        setDateValue(e); 
+    };
 
     const onTimeChange = (e) => {
-        setTimeValue({timeValue: e})
-    }
+        setTimeValue(e);
+        let dtFormat = new Intl.DateTimeFormat('en-US', {
+            hour: 'numeric',
+            minute: 'numeric',
+        });
+        setTimeValue(dtFormat.format(timeValue))
+    };
 
-    console.log(dateValue)
-    console.log(timeValue)
+    // console.log(dateValue)
+
 
     return (
         <form align='center' className='add=form' onSubmit={onSubmit}>
@@ -50,25 +63,26 @@ const AddCall = ({ onAdd }) => {
                 type="date"
                 mask = '____/__/__'
                 value={dateValue}
-                onChange={e => onDateChange(moment(e).format('yyyy/MM/DD'))}
+                onChange={e => onDateChange(moment(e).format('YYYY/MM/DD'))}
                 renderInput={(params) => <TextField {...params} />}
             />   
              </LocalizationProvider>   
              <br/>
              <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <TimePicker
+                    variant="outlined"
                     name='timeValue'
                     label="Time"
-                    type="time"
+                    type="date"
                     value={timeValue}
-                    onChange={e => onTimeChange(moment(e).format('hh:mm'))}
+                    onChange={(e) => onTimeChange(e)}
                     renderInput={(params) => <TextField {...params} />}
                 />
             </LocalizationProvider>
             <br/>
              <TextField name='phoneNumber' id="outlined-basic" label="Phone Number" variant="outlined" value={phoneNumber} onChange={e => setPhoneNumber(e.target.value)} />  
              <br/>
-             <input type='submit' value='Save Task' className="btn"></input>   
+             <input type='submit' onSubmit={onSubmit} value='Save Call' className="btn"></input>   
             </form>
     )
 
