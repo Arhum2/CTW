@@ -11,7 +11,7 @@
             "name": "ctw",
             "database": "ctw",
             "username": "root",
-            "password": "<DBPASSWORD>"
+            "password": "rootpass"
         }
     ]
 }
