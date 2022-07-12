@@ -24,18 +24,18 @@ const TableUI = ({ calls, onDelete }) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {calls?.map((row) => (
+          {calls?.map((row,i) => (
             <TableRow
-              key={row.id}
+              key={i}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
-              <TableCell component="th" scope="row">
+              <TableCell component="th" scope="row" key={calls.volunteerName}>
                 {row.volunteerName}
               </TableCell>
-              <TableCell align="right">{row.seniorName}</TableCell>
-              <TableCell align="right">{row.Date}</TableCell>
-              <TableCell align="right">{row.Time}</TableCell>
-              <TableCell align="right">{row.phoneNumber}</TableCell>
+              <TableCell key={calls.seniorName} align="right">{row.seniorName}</TableCell>
+              <TableCell key={calls.Date} align="right">{row.Date}</TableCell>
+              <TableCell key={calls.Time} align="right">{row.Time}</TableCell>
+              <TableCell key={calls.phoneNumber} align="right">{row.phoneNumber}</TableCell>
               <td><FaTimes onClick={() => onDelete(calls.id)}/></td>
             </TableRow>
           ))}
