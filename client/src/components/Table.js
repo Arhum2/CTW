@@ -36,7 +36,7 @@ const TableUI = ({ calls, onDelete }) => {
               <TableCell align="right">{row.Date}</TableCell>
               <TableCell align="right">{row.Time}</TableCell>
               <TableCell align="right">{row.phoneNumber}</TableCell>
-              <td><FaTimes onClick={() => onDelete(calls.id)}/></td>
+              <td> <FaTimes onClick={() => onDelete(calls.id)}/></td>
             </TableRow>
           ))}
         </TableBody>
