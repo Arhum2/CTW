@@ -1,15 +1,15 @@
+from ast import Delete
 import os
 from datetime import datetime
 from enum import unique
-
 from dotenv import load_dotenv
-from flask import Flask, request
+from flask import Flask, redirect, request
 from flask_sqlalchemy import SQLAlchemy
 
 # Environment variables
 load_dotenv()
 URI = os.getenv("URI")
-print(URI)
+# print(URI)
 
 # Configure application
 app = Flask(__name__)
@@ -30,6 +30,7 @@ class Calls(db.Model):
 
     def to_json(self):
         return {
+            "id": self.id,
             "volunteerName": self.volunteerName,
             "seniorName": self.seniorName,
             "phoneNumber": self.phoneNumber,
@@ -47,11 +48,7 @@ def get_calls():
             volunteerName=request.json["volunteerName"],
             seniorName=request.json["seniorName"],
             phoneNumber=request.json["phoneNumber"],
-            # Changed "dateValue" to "Date" to be consistent with our GET request
-            # Also have to POST an actual Date object, so we use strptime then .date()
             Date=datetime.strptime(request.json["Date"], "%Y/%m/%d").date(),
-            # Changed "timeValue" to "Time" to be consistent with our GET request
-            # Also have to POST an actual Time object, so we use strptime then .time()
             Time=datetime.strptime(request.json["Time"], "%I:%M %p").time(),
         )
 
@@ -66,6 +63,17 @@ def call():
     call_list = Calls.query.all()
     return {"calls": [call.to_json() for call in call_list]}
 
+@app.route('/delete_call/<int:id>', methods=['GET', 'POST'])
+def delete_call(id):
+    if request.method == 'POST':
+        call_to_delete = Calls.query.get_or_404(id)
+        db.session.delete(call_to_delete)
+        db.session.commit()
+        print("Done!")
+        return redirect("/call")
+    else:
+        print("ERROR")
+        return redirect("/call")
 
 if __name__ == "__main__":
     app.run(debug=True)

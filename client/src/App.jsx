@@ -1,4 +1,4 @@
-import TableUI from "./components/TableUI";
+import TableUI from "./components/Table";
 import AddCall from "./components/AddCall";
 import React, { useState, useEffect } from "react";
 import "./index.css";
@@ -12,6 +12,7 @@ function App() {
     const getCalls = async () => {
       const callsFromServer = await fetchCalls();
       setCalls(callsFromServer);
+      console.log(callsFromServer)
     };
     getCalls();
   }, []);
@@ -24,7 +25,7 @@ function App() {
     return data.calls;
   };
 
-  //Adds Call
+  // Adds Call
   // Changed the parameter's name from "calls" to "newCall" due to a name conflict
   // with the existing "call" attribute
   const addCall = async (newCall) => {
@@ -37,11 +38,17 @@ function App() {
       body: JSON.stringify(newCall),
     });
 
-    // Commenting this out because the response from the Flask Server
-    // is "done". it does NOT return the formatted call object.
-    // const data = await res.json();
-
     setCalls([...calls, newCall]);
+  };
+
+  // Deletes calls
+  const deleteCall = async (id) => {
+    console.log(id)
+    await fetch(`http://localhost:5000/delete_call/${id}`, {
+      method: "POST",
+      mode: 'cors'
+    });
+    setCalls(calls.filter((calls) => calls.id !== id));
   };
 
   return (
@@ -49,14 +56,13 @@ function App() {
       <h1>CTW Call Planner</h1>
 
       {/*Table component*/}
-      <TableUI calls={calls} />
-      {/* {calls.length > 0 ? <TableUi calls={calls}  addCall={addCall} /> : 'No Calls'} */}
+      <TableUI calls={calls} onDelete={deleteCall}/>
 
       {/*Form & Button component*/}
       <button className="btn" onClick={() => setShowAddCall(!showAddCall)}>
         Add Call
       </button>
-      {showAddCall && <AddCall onAdd={addCall} />}
+      {showAddCall && <AddCall onAdd={addCall}  />}
     </div>
   );
 }

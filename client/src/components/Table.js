@@ -7,8 +7,7 @@ import {
   TableHead,
   TableRow,
 } from "@mui/material";
-import { FaTimes } from 'react-icons/fa'
-
+import { FaTimes } from "react-icons/fa";
 
 const TableUI = ({ calls, onDelete }) => {
   return (
@@ -24,19 +23,21 @@ const TableUI = ({ calls, onDelete }) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {calls?.map((row,i) => (
+          {calls?.map((row, i) => (
             <TableRow
               key={i}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
-              <TableCell component="th" scope="row" key={calls.volunteerName}>
+              <TableCell component="th" scope="row">
                 {row.volunteerName}
               </TableCell>
-              <TableCell key={calls.seniorName} align="right">{row.seniorName}</TableCell>
-              <TableCell key={calls.Date} align="right">{row.Date}</TableCell>
-              <TableCell key={calls.Time} align="right">{row.Time}</TableCell>
-              <TableCell key={calls.phoneNumber} align="right">{row.phoneNumber}</TableCell>
-              <td><FaTimes onClick={() => onDelete(calls.id)}/></td>
+              <TableCell align="right">{row.seniorName}</TableCell>
+              <TableCell align="right">{row.Date}</TableCell>
+              <TableCell align="right">{row.Time}</TableCell>
+              <TableCell align="right">{row.phoneNumber}</TableCell>
+              <td>
+                <FaTimes onClick={() => onDelete(row.id)} />
+              </td>
             </TableRow>
           ))}
         </TableBody>
