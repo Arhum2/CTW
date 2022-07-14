@@ -69,10 +69,8 @@ def delete_call(id):
         call_to_delete = Calls.query.get_or_404(id)
         db.session.delete(call_to_delete)
         db.session.commit()
-        print("Done!")
         return redirect("/call")
     else:
-        print("ERROR")
         return redirect("/call")
 
 if __name__ == "__main__":

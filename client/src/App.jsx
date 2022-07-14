@@ -36,7 +36,7 @@ function App() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(newCall),
-    });
+    }); 
 
     setCalls([...calls, newCall]);
   };
@@ -46,7 +46,6 @@ function App() {
     console.log(id)
     await fetch(`http://localhost:5000/delete_call/${id}`, {
       method: "POST",
-      mode: 'cors'
     });
     setCalls(calls.filter((calls) => calls.id !== id));
   };
