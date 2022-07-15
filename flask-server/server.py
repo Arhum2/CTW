@@ -48,7 +48,7 @@ def get_calls():
             volunteerName=request.json["volunteerName"],
             seniorName=request.json["seniorName"],
             phoneNumber=request.json["phoneNumber"],
-            Date=datetime.strptime(request.json["Date"], "%Y/%m/%d").date(),
+            Date=datetime.strptime(request.json["Date"], "%d/%b/%Y").date(),
             Time=datetime.strptime(request.json["Time"], "%I:%M %p").time(),
         )
 

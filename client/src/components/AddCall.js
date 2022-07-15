@@ -14,14 +14,18 @@ const AddCall = ({ onAdd }) => {
   const [timeValue, setTimeValue] = useState(Date.now());
   const [phoneNumber, setPhoneNumber] = useState("");
 
+
   const onSubmit = (e) => {
-    console.log(timeValue);
     e.preventDefault();
+
+    if(isNaN(phoneNumber)) {
+      alert("Please add a Phone Number")
+    }
 
     onAdd({
       volunteerName,
       seniorName,
-      Date: format(dateValue, "yyyy/MM/dd"),
+      Date: format(dateValue, "dd/MMM/yyyy"),
       Time: format(timeValue, "hh:mm a"),
       phoneNumber,
     });
@@ -96,7 +100,7 @@ const AddCall = ({ onAdd }) => {
       <input
         type="submit"
         onSubmit={onSubmit}
-        value="Save Call"
+        value="Add New Call"
         className="btn"
       ></input>
     </form>

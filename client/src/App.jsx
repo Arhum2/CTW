@@ -12,7 +12,6 @@ function App() {
     const getCalls = async () => {
       const callsFromServer = await fetchCalls();
       setCalls(callsFromServer);
-      console.log(callsFromServer)
     };
     getCalls();
   }, []);
@@ -43,7 +42,6 @@ function App() {
 
   // Deletes calls
   const deleteCall = async (id) => {
-    console.log(id)
     await fetch(`http://localhost:5000/delete_call/${id}`, {
       method: "POST",
     });
