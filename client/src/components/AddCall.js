@@ -43,7 +43,7 @@ const AddCall = ({ onAdd }) => {
         value={volunteerName}
         onChange={(e) => setVolunteerName(e.target.value)}
       />
-      <br />
+      <pr />
       <TextField
         name="seniorName"
         id="outlined-basic"
@@ -52,7 +52,7 @@ const AddCall = ({ onAdd }) => {
         value={seniorName}
         onChange={(e) => setSeniorName(e.target.value)}
       />
-      <br />
+      <pr />
       <LocalizationProvider
         dateAdapter={AdapterDateFns}
         name="dateValue"
@@ -71,7 +71,7 @@ const AddCall = ({ onAdd }) => {
           renderInput={(params) => <TextField {...params} />}
         />
       </LocalizationProvider>
-      <br />
+      <pr />
       <LocalizationProvider dateAdapter={AdapterDateFns}>
         <TimePicker
           variant="outlined"
@@ -83,7 +83,7 @@ const AddCall = ({ onAdd }) => {
           renderInput={(params) => <TextField {...params} />}
         />
       </LocalizationProvider>
-      <br />
+      <pr />
       <TextField
         name="phoneNumber"
         id="outlined-basic"
@@ -92,7 +92,7 @@ const AddCall = ({ onAdd }) => {
         value={phoneNumber}
         onChange={(e) => setPhoneNumber(e.target.value)}
       />
-      <br />
+      <pr />
       <input
         type="submit"
         onSubmit={onSubmit}
