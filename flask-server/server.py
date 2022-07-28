@@ -28,6 +28,10 @@ class Calls(db.Model):
     Date = db.Column(db.DATE)
     Time = db.Column(db.TIME)
 
+class Availability(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    volunteerName = db.Column(db.String(50))
+
     def to_json(self):
         return {
             "id": self.id,

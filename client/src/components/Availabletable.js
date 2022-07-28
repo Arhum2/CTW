@@ -24,17 +24,19 @@ import {
             </TableRow>
           </TableHead>
           <TableBody>
-            {calls?.map((row, i) => (
+            {calls?.map((row, x) => (
               <TableRow
-                key={i}
+                key={x}
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
                 <TableCell component="th" scope="row">
                   {row.volunteerName}
                 </TableCell>
-                <TableCell align="right">{row.Date}</TableCell>
-                <TableCell align="right">{row.Time}</TableCell>
-                <TableCell align="right">{row.phoneNumber}</TableCell>
+                <TableCell align="right"></TableCell>
+                <TableCell align="right"></TableCell>
+                <TableCell align="right"></TableCell>
+                <TableCell align="right"></TableCell>
+                <TableCell align="right"></TableCell>
                 <td>
                   <FaTimes onClick={() => onDelete(row.id)} />
                 </td>

@@ -1,5 +1,6 @@
 import TableUI from "./components/Table";
 import Availabletable from "./components/Availabletable";
+import AddTime from "./components/AddTime";
 import AddCall from "./components/AddCall";
 import React, { useState, useEffect } from "react";
 import "./index.css";
@@ -7,6 +8,7 @@ import "./index.css";
 function App() {
   const [calls, setCalls] = useState([]);
   const [showAddCall, setShowAddCall] = useState(false);
+  const [showAddTime, setShowAddTime] = useState(false);
 
   // Sets state with data
   useEffect(() => {
@@ -62,6 +64,10 @@ function App() {
       </button>
       {showAddCall && <AddCall onAdd={addCall}  />}
       <Availabletable calls={calls} onDelete={deleteCall}/>
+      <button className="btn" onClick={() => setShowAddTime(!showAddTime)}>
+        Add Availability
+      </button>
+      {showAddTime && <AddTime onAdd={addCall}  />}
     </div>
   );
 }
