@@ -17,23 +17,28 @@ const AddCall = ({ onAdd }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-
-    if(isNaN(phoneNumber)) {
+    var x = parseInt(phoneNumber)
+    
+    if(isNaN(x)) {
       alert("Please add a Phone Number")
+      console.log("NAN")
     }
+    
+    else {
 
-    onAdd({
-      volunteerName,
-      seniorName,
-      Date: format(dateValue, "dd/MMM/yyyy"),
-      Time: format(timeValue, "hh:mm a"),
-      phoneNumber,
-    });
-    setVolunteerName("");
-    setSeniorName("");
-    setDateValue("");
-    setTimeValue("");
-    setPhoneNumber("");
+      onAdd({
+        volunteerName,
+        seniorName,
+        Date: format(dateValue, "dd/MMM/yyyy"),
+        Time: format(timeValue, "hh:mm a"),
+        phoneNumber,
+      });
+      setVolunteerName("");
+      setSeniorName("");
+      setDateValue("");
+      setTimeValue("");
+      setPhoneNumber("");
+    }
   };
 
 
@@ -47,7 +52,7 @@ const AddCall = ({ onAdd }) => {
         value={volunteerName}
         onChange={(e) => setVolunteerName(e.target.value)}
       />
-      <pr />
+      <></>
       <TextField
         name="seniorName"
         id="outlined-basic"
@@ -56,7 +61,7 @@ const AddCall = ({ onAdd }) => {
         value={seniorName}
         onChange={(e) => setSeniorName(e.target.value)}
       />
-      <pr />
+      <></>
       <LocalizationProvider
         dateAdapter={AdapterDateFns}
         name="dateValue"
@@ -75,7 +80,7 @@ const AddCall = ({ onAdd }) => {
           renderInput={(params) => <TextField {...params} />}
         />
       </LocalizationProvider>
-      <pr />
+      <></>
       <LocalizationProvider dateAdapter={AdapterDateFns}>
         <TimePicker
           variant="outlined"
@@ -87,7 +92,7 @@ const AddCall = ({ onAdd }) => {
           renderInput={(params) => <TextField {...params} />}
         />
       </LocalizationProvider>
-      <pr />
+      <></>
       <TextField
         name="phoneNumber"
         id="outlined-basic"
@@ -96,7 +101,7 @@ const AddCall = ({ onAdd }) => {
         value={phoneNumber}
         onChange={(e) => setPhoneNumber(e.target.value)}
       />
-      <pr />
+      <></>
       <input
         type="submit"
         onSubmit={onSubmit}
