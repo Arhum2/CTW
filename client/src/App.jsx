@@ -1,4 +1,5 @@
 import TableUI from "./components/Table";
+import Availabletable from "./components/Availabletable";
 import AddCall from "./components/AddCall";
 import React, { useState, useEffect } from "react";
 import "./index.css";
@@ -60,6 +61,7 @@ function App() {
         Add Call
       </button>
       {showAddCall && <AddCall onAdd={addCall}  />}
+      <Availabletable calls={calls} onDelete={deleteCall}/>
     </div>
   );
 }
