@@ -38,7 +38,7 @@ function App() {
 
 
   const fetchAvailability = async () => {
-    const res = await fetch("/availability");
+    const res = await fetch("/Availability");
     const data = await res.json();
 
     return data.availability;

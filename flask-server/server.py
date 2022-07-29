@@ -55,11 +55,11 @@ class Availability(db.Model):
         return{
             'id': self.id,
             "volunteerName": self.volunteerName,
-            "Monday": self.Time.strftime("%I:%M %p"),
-            "Tuesday": self.Time.strftime("%I:%M %p"),
-            "Wednesday": self.Time.strftime("%I:%M %p"),
-            "Thursday": self.Time.strftime("%I:%M %p"),
-            "Friday": self.Time.strftime("%I:%M %p"),
+            "Monday": self.Monday.strftime("%I:%M %p"),
+            "Tuesday": self.Tuesday.strftime("%I:%M %p"),
+            "Wednesday": self.Wednesday.strftime("%I:%M %p"),
+            "Thursday": self.Thursday.strftime("%I:%M %p"),
+            "Friday": self.Friday.strftime("%I:%M %p"),
         }
 
 
