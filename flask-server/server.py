@@ -19,6 +19,8 @@ app.config["SQLALCHEMY_DATABASE_URI"] = URI
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db = SQLAlchemy(app)
 
+
+
 # DB model
 
 class Calls(db.Model):
@@ -60,6 +62,8 @@ class Availability(db.Model):
             "Friday": self.Time.strftime("%I:%M %p"),
         }
 
+
+
 #Adding data end point
 
 @app.route("/add_calls", methods=["POST"])
@@ -97,6 +101,8 @@ def get_availabilities():
 
         return 'done', 201
 
+
+
 #Data end point
 
 @app.route("/call", methods=["GET"])
@@ -109,6 +115,8 @@ def availability():
     availability_list = Availability.query.all()
     return {"availability": [availability.to_json() for availability in availability_list]}
 
+
+
 #Deleting end point
 
 @app.route('/delete_call/<int:id>', methods=['GET', 'POST'])
@@ -120,6 +128,21 @@ def delete_call(id):
         return redirect("/call")
     else:
         return redirect("/call")
+
+@app.route('/delete_availability/<int:id>', methods=['GET', 'POST'])
+def delete_availability(id):
+    if request.method == 'POST':
+        availability_to_delete = Availability.query.get_or_404(id)
+        db.session.delete(availability_to_delete)
+        db.session.commit()
+        return redirect('/Availability')
+    else:
+        return redirect('/Availability')
+
+
+
+
+
 
 if __name__ == "__main__":
     app.run(debug=True)

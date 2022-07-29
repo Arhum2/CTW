@@ -73,12 +73,19 @@ function App() {
     setAvailability([...availability, newAvailability]);
   };
 
-  // Deletes calls
+  // Delete
   const deleteCall = async (id) => {
     await fetch(`http://localhost:5000/delete_call/${id}`, {
       method: "POST",
     });
     setCalls(calls.filter((calls) => calls.id !== id));
+  };
+
+  const deleteAvailability = async (id) => {
+     await fetch(`http://localhost:5000/delete_availability/${id}`, {
+      method: "POST",
+     });
+     setAvailability(availability.filter((availability) => availability.id !== id));
   };
 
   return (
@@ -95,7 +102,7 @@ function App() {
       {showAddCall && <AddCall onAdd={addCall} />}
 
       {/*Availability Form & Button component*/}
-      <Availabletable availability={availability} onDelete={deleteCall} />
+      <Availabletable availability={availability} onDelete={deleteAvailability} />
       <button className="btn" onClick={() => setShowAddTime(!showAddTime)}>
         Add Availability
       </button>

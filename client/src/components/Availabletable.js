@@ -34,11 +34,11 @@ import {
                 <TableCell component="th" scope="row">
                   {row.volunteerName}
                 </TableCell>
-                <TableCell align="right"></TableCell>
-                <TableCell align="right"></TableCell>
-                <TableCell align="right"></TableCell>
-                <TableCell align="right"></TableCell>
-                <TableCell align="right"></TableCell>
+                <TableCell align="right">{row.Monday}</TableCell>
+                <TableCell align="right">{row.Tuesday}</TableCell>
+                <TableCell align="right">{row.Wednesday}</TableCell>
+                <TableCell align="right">{row.Thursday}</TableCell>
+                <TableCell align="right">{row.Friday}</TableCell>
                 <td>
                   <FaTimes onClick={() => onDelete(row.id)} />
                 </td>
