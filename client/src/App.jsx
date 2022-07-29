@@ -7,6 +7,7 @@ import "./index.css";
 
 function App() {
   const [calls, setCalls] = useState([]);
+  const [Availability, setAvailability] = useState([])
   const [showAddCall, setShowAddCall] = useState(false);
   const [showAddTime, setShowAddTime] = useState(false);
 
@@ -42,6 +43,18 @@ function App() {
 
     setCalls([...calls, newCall]);
   };
+  const addAvailability = async (newAvailability) => {
+    const res = await fetch("/add_availability", {
+      method: "POST",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newAvailability),
+    }); 
+
+    setAvailability([...Availability, newAvailability]);
+  };
 
   // Deletes calls
   const deleteCall = async (id) => {
@@ -63,11 +76,12 @@ function App() {
         Add Call
       </button>
       {showAddCall && <AddCall onAdd={addCall}  />}
+      
       <Availabletable calls={calls} onDelete={deleteCall}/>
       <button className="btn" onClick={() => setShowAddTime(!showAddTime)}>
         Add Availability
       </button>
-      {showAddTime && <AddTime onAdd={addCall}  />}
+      {showAddTime && <AddTime onAdd={addAvailability}  />}
     </div>
   );
 }

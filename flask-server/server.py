@@ -1,4 +1,5 @@
 from ast import Delete
+from calendar import TUESDAY
 import os
 from datetime import datetime
 from enum import unique
@@ -28,9 +29,6 @@ class Calls(db.Model):
     Date = db.Column(db.DATE)
     Time = db.Column(db.TIME)
 
-class Availability(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    volunteerName = db.Column(db.String(50))
 
     def to_json(self):
         return {
@@ -40,6 +38,26 @@ class Availability(db.Model):
             "phoneNumber": self.phoneNumber,
             "Date": self.Date.strftime("%Y/%m/%d"),
             "Time": self.Time.strftime("%I:%M %p"),
+        }
+
+class Availability(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    volunteerName = db.Column(db.String(50))
+    Monday = db.Column(db.TIME)
+    Tuesday = db.Column(db.TIME)
+    Wednesday = db.Column(db.TIME)
+    Thursday = db.Column(db.TIME)
+    Friday = db.Column(db.TIME)
+
+    def to_json(self):
+        return{
+            'id': self.id,
+            "volunteerName": self.volunteerName,
+            "Monday": self.Time.strftime("%I:%M %p"),
+            "Tuesday": self.Time.strftime("%I:%M %p"),
+            "Wednesday": self.Time.strftime("%I:%M %p"),
+            "Thursday": self.Time.strftime("%I:%M %p"),
+            "Friday": self.Time.strftime("%I:%M %p"),
         }
 
 
@@ -60,6 +78,23 @@ def get_calls():
         db.session.commit()
 
         return "done", 201
+
+@app.route('/add_availability', methods=['POST'])
+def get_availabilities():
+    if request.method == 'POST':
+        new_availabilities = Availability(
+            volunteerName=request.json["volunteerName"],
+            Monday=datetime.strptime(request.json["Monday"], "%I:%M %p").time(),
+            Tuesday=datetime.strptime(request.json["Tuesday"], "%I:%M %p").time(),
+            Wednesday=datetime.strptime(request.json["Wednesday"], "%I:%M %p").time(),
+            Thursday=datetime.strptime(request.json["Thursday"], "%I:%M %p").time(),
+            Friday=datetime.strptime(request.json["Friday"], "%I:%M %p").time(),
+        )
+
+        db.session.add(new_availabilities)
+        db.session.commit()
+
+        return 'done', 201
 
 
 @app.route("/call", methods=["GET"])

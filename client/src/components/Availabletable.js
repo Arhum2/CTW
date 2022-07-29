@@ -12,6 +12,7 @@ import {
   const Availabletable = ({ calls, onDelete }) => {
     return (
       <TableContainer component={Paper}>
+        <h2>Availability</h2>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow>
@@ -21,6 +22,7 @@ import {
               <TableCell align="right">Wednesday</TableCell>
               <TableCell align="right">Thursday</TableCell>
               <TableCell align="right">Friday</TableCell>
+              <TableCell align="right">Phone Number</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>

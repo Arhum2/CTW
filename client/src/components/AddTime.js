@@ -8,7 +8,11 @@ import { format } from "date-fns";
 
 const AddTime = ({ onAdd }) => {
   const [volunteerName, setVolunteerName] = useState("");
-  const [timeValue, setTimeValue] = useState(Date.now());
+  const [mondayValue, setMondayValue] = useState(Date.now());
+  const [tuesdayValue, setTuesdayValue] = useState(Date.now());
+  const [wednesdayValue, setWednesdayValue] = useState(Date.now());
+  const [thursdayValue, setThursdayValue] = useState(Date.now());
+  const [fridayValue, setFridayValue] = useState(Date.now());
 
 
   const onSubmit = (e) => {
@@ -16,10 +20,18 @@ const AddTime = ({ onAdd }) => {
     
       onAdd({
         volunteerName,
-        Time: format(timeValue, "hh:mm a"),
+        Monday: format(mondayValue, "hh:mm a"),
+        Tuesday: format(tuesdayValue, "hh:mm a"),
+        Wednesday: format(wednesdayValue, "hh:mm a"),
+        Thursday: format(thursdayValue, "hh:mm a"),
+        Friday: format(fridayValue, "hh:mm a"),
       });
       setVolunteerName("");
-      setTimeValue("");
+      setMondayValue("");
+      setTuesdayValue("");
+      setWednesdayValue("");
+      setThursdayValue("");
+      setFridayValue("");
 
   };
 
@@ -38,11 +50,55 @@ const AddTime = ({ onAdd }) => {
       <LocalizationProvider dateAdapter={AdapterDateFns}>
         <TimePicker
           variant="outlined"
-          name="timeValue"
-          label="Time"
+          name="mondayValue"
+          label="Monday"
           type="date"
-          value={timeValue}
-          onChange={(e) => setTimeValue(e)}
+          value={mondayValue}
+          onChange={(e) => setMondayValue(e)}
+          renderInput={(params) => <TextField {...params} />}
+        />
+      </LocalizationProvider>
+      <LocalizationProvider dateAdapter={AdapterDateFns}>
+        <TimePicker
+          variant="outlined"
+          name="tuesdayValue"
+          label="Tuesday"
+          type="date"
+          value={tuesdayValue}
+          onChange={(e) => setTuesdayValue(e)}
+          renderInput={(params) => <TextField {...params} />}
+        />
+      </LocalizationProvider>
+      <LocalizationProvider dateAdapter={AdapterDateFns}>
+        <TimePicker
+          variant="outlined"
+          name="wednesdayValue"
+          label="Wednesday"
+          type="date"
+          value={wednesdayValue}
+          onChange={(e) => setWednesdayValue(e)}
+          renderInput={(params) => <TextField {...params} />}
+        />
+      </LocalizationProvider>
+      <LocalizationProvider dateAdapter={AdapterDateFns}>
+        <TimePicker
+          variant="outlined"
+          name="thursdayValue"
+          label="Thursday"
+          type="date"
+          value={thursdayValue}
+          onChange={(e) => setThursdayValue(e)}
+          renderInput={(params) => <TextField {...params} />}
+        />
+      </LocalizationProvider>
+      <LocalizationProvider dateAdapter={AdapterDateFns}>
+        <TimePicker
+          variant="outlined"
+          name="fridayValue"
+          label="Friday"
+          type="date"
+          value={fridayValue}
+          onChange={(e) => setFridayValue(e)}
           renderInput={(params) => <TextField {...params} />}
         />
       </LocalizationProvider>

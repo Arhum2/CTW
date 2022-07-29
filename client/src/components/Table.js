@@ -12,13 +12,16 @@ import { FaTimes } from "react-icons/fa";
 const TableUI = ({ calls, onDelete }) => {
   return (
     <TableContainer component={Paper}>
+      <h2>Calls</h2>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
             <TableCell>Volunteer Name</TableCell>
-            <TableCell align="right">Senior Name</TableCell>
-            <TableCell align="right">Date</TableCell>
-            <TableCell align="right">Time</TableCell>
+            <TableCell align="right">Monday</TableCell>
+            <TableCell align="right">Tuesday</TableCell>
+            <TableCell align="right">Wednesday</TableCell>
+            <TableCell align="right">Thursday</TableCell>
+            <TableCell align="right">Friday</TableCell>
             <TableCell align="right">Phone Number</TableCell>
           </TableRow>
         </TableHead>
