@@ -10,7 +10,6 @@ from flask_sqlalchemy import SQLAlchemy
 # Environment variables
 load_dotenv()
 URI = os.getenv("URI")
-# print(URI)
 
 # Configure application
 app = Flask(__name__)
@@ -21,6 +20,7 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db = SQLAlchemy(app)
 
 # DB model
+
 class Calls(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     volunteerName = db.Column(db.String(50))
@@ -60,6 +60,7 @@ class Availability(db.Model):
             "Friday": self.Time.strftime("%I:%M %p"),
         }
 
+#Adding data end point
 
 @app.route("/add_calls", methods=["POST"])
 def get_calls():
@@ -96,11 +97,19 @@ def get_availabilities():
 
         return 'done', 201
 
+#Data end point
 
 @app.route("/call", methods=["GET"])
 def call():
     call_list = Calls.query.all()
     return {"calls": [call.to_json() for call in call_list]}
+
+@app.route("/Availability", methods=["GET"])
+def availability():
+    availability_list = Availability.query.all()
+    return {"availability": [availability.to_json() for availability in availability_list]}
+
+#Deleting end point
 
 @app.route('/delete_call/<int:id>', methods=['GET', 'POST'])
 def delete_call(id):

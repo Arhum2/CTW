@@ -7,11 +7,11 @@ import "./index.css";
 
 function App() {
   const [calls, setCalls] = useState([]);
-  const [Availability, setAvailability] = useState([])
+  const [availability, setAvailability] = useState([]);
   const [showAddCall, setShowAddCall] = useState(false);
   const [showAddTime, setShowAddTime] = useState(false);
 
-  // Sets state with data
+ // Fetching and Setting Call and Availability Data
   useEffect(() => {
     const getCalls = async () => {
       const callsFromServer = await fetchCalls();
@@ -20,13 +20,30 @@ function App() {
     getCalls();
   }, []);
 
-  //Fetch Call data
+  useEffect(() => {
+    const getAvailability = async () => {
+      const availabilityFromServer = await fetchAvailability();
+      setAvailability(availabilityFromServer);
+    };
+    getAvailability();
+  }, []);
+
+ 
   const fetchCalls = async () => {
     const res = await fetch("/call");
     const data = await res.json();
 
     return data.calls;
   };
+
+
+  const fetchAvailability = async () => {
+    const res = await fetch("/availability");
+    const data = await res.json();
+
+    return data.availability;
+  };
+
 
   // Adds Call
   // Changed the parameter's name from "calls" to "newCall" due to a name conflict
@@ -39,7 +56,7 @@ function App() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(newCall),
-    }); 
+    });
 
     setCalls([...calls, newCall]);
   };
@@ -51,9 +68,9 @@ function App() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(newAvailability),
-    }); 
+    });
 
-    setAvailability([...Availability, newAvailability]);
+    setAvailability([...availability, newAvailability]);
   };
 
   // Deletes calls
@@ -68,20 +85,21 @@ function App() {
     <div>
       <h1>CTW Call Planner</h1>
 
-      {/*Table component*/}
-      <TableUI calls={calls} onDelete={deleteCall}/>
+      {/*Calls Table component*/}
+      <TableUI calls={calls} onDelete={deleteCall} />
 
-      {/*Form & Button component*/}
+      {/*Calls Form & Button component*/}
       <button className="btn" onClick={() => setShowAddCall(!showAddCall)}>
         Add Call
       </button>
-      {showAddCall && <AddCall onAdd={addCall}  />}
-      
-      <Availabletable calls={calls} onDelete={deleteCall}/>
+      {showAddCall && <AddCall onAdd={addCall} />}
+
+      {/*Availability Form & Button component*/}
+      <Availabletable availability={availability} onDelete={deleteCall} />
       <button className="btn" onClick={() => setShowAddTime(!showAddTime)}>
         Add Availability
       </button>
-      {showAddTime && <AddTime onAdd={addAvailability}  />}
+      {showAddTime && <AddTime onAdd={addAvailability} />}
     </div>
   );
 }

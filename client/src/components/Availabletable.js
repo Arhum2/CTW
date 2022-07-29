@@ -9,7 +9,7 @@ import {
   } from "@mui/material";
   import { FaTimes } from "react-icons/fa";
   
-  const Availabletable = ({ calls, onDelete }) => {
+  const Availabletable = ({ availability, onDelete }) => {
     return (
       <TableContainer component={Paper}>
         <h2>Availability</h2>
@@ -26,7 +26,7 @@ import {
             </TableRow>
           </TableHead>
           <TableBody>
-            {calls?.map((row, x) => (
+            {availability?.map((row, x) => (
               <TableRow
                 key={x}
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
