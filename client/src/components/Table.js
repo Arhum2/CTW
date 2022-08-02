@@ -34,10 +34,9 @@ const TableUI = ({ calls, onDelete }) => {
               <TableCell component="th" scope="row">
                 {row.volunteerName}
               </TableCell>
-              <TableCell align="right">{row.seniorName}</TableCell>
-              <TableCell align="right">{row.Date}</TableCell>
-              <TableCell align="right">{row.Time}</TableCell>
-              <TableCell align="right">{row.phoneNumber}</TableCell>
+              <TableCell align="right">
+                <td colSpan='2'>{row.seniorName} @ {row.Time}</td>
+              </TableCell>
               <td>
                 <FaTimes onClick={() => onDelete(row.id)} />
               </td>

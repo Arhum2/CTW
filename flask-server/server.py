@@ -27,7 +27,7 @@ class Calls(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     volunteerName = db.Column(db.String(50))
     seniorName = db.Column(db.String(50))
-    phoneNumber = db.Column(db.String(50))
+    phoneNumber = db.Column(db.String(13))
     Date = db.Column(db.DATE)
     Time = db.Column(db.TIME)
 
@@ -50,6 +50,7 @@ class Availability(db.Model):
     Wednesday = db.Column(db.TIME)
     Thursday = db.Column(db.TIME)
     Friday = db.Column(db.TIME)
+    VphoneNumber = db.Column(db.String(13))
 
     def to_json(self):
         return{
@@ -60,6 +61,7 @@ class Availability(db.Model):
             "Wednesday": self.Wednesday.strftime("%I:%M %p"),
             "Thursday": self.Thursday.strftime("%I:%M %p"),
             "Friday": self.Friday.strftime("%I:%M %p"),
+            "phoneNumber": self.VphoneNumber,
         }
 
 
@@ -94,13 +96,13 @@ def get_availabilities():
             Wednesday=datetime.strptime(request.json["Wednesday"], "%I:%M %p").time(),
             Thursday=datetime.strptime(request.json["Thursday"], "%I:%M %p").time(),
             Friday=datetime.strptime(request.json["Friday"], "%I:%M %p").time(),
+            VphoneNumber=request.json['VphoneNumber'],
         )
 
         db.session.add(new_availabilities)
         db.session.commit()
 
         return 'done', 201
-
 
 
 #Data end point

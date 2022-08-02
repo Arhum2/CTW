@@ -39,6 +39,7 @@ import {
                 <TableCell align="right">{row.Wednesday}</TableCell>
                 <TableCell align="right">{row.Thursday}</TableCell>
                 <TableCell align="right">{row.Friday}</TableCell>
+                <TableCell align="right">{row.VphoneNumber}</TableCell>
                 <td>
                   <FaTimes onClick={() => onDelete(row.id)} />
                 </td>

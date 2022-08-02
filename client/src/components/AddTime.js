@@ -13,28 +13,27 @@ const AddTime = ({ onAdd }) => {
   const [wednesdayValue, setWednesdayValue] = useState(Date.now());
   const [thursdayValue, setThursdayValue] = useState(Date.now());
   const [fridayValue, setFridayValue] = useState(Date.now());
-
+  const [VphoneNumber, setVPhoneNumber] = useState("");
 
   const onSubmit = (e) => {
     e.preventDefault();
-    
-      onAdd({
-        volunteerName,
-        Monday: format(mondayValue, "hh:mm a"),
-        Tuesday: format(tuesdayValue, "hh:mm a"),
-        Wednesday: format(wednesdayValue, "hh:mm a"),
-        Thursday: format(thursdayValue, "hh:mm a"),
-        Friday: format(fridayValue, "hh:mm a"),
-      });
-      setVolunteerName("");
-      setMondayValue("");
-      setTuesdayValue("");
-      setWednesdayValue("");
-      setThursdayValue("");
-      setFridayValue("");
 
+    onAdd({
+      volunteerName,
+      Monday: format(mondayValue, "hh:mm a"),
+      Tuesday: format(tuesdayValue, "hh:mm a"),
+      Wednesday: format(wednesdayValue, "hh:mm a"),
+      Thursday: format(thursdayValue, "hh:mm a"),
+      Friday: format(fridayValue, "hh:mm a"),
+      VphoneNumber,
+    });
+    setVolunteerName("");
+    setMondayValue("");
+    setTuesdayValue("");
+    setWednesdayValue("");
+    setThursdayValue("");
+    setFridayValue("");
   };
-
 
   return (
     <form align="center" className="add=form" onSubmit={onSubmit}>
@@ -103,6 +102,14 @@ const AddTime = ({ onAdd }) => {
         />
       </LocalizationProvider>
       <></>
+      <TextField
+        name="phoneNumber"
+        id="outlined-basic"
+        label="Volunteer Phone Number"
+        variant="outlined"
+        value={VphoneNumber}
+        onChange={(e) => setVPhoneNumber(e.target.value)}
+      />
       <input
         type="submit"
         onSubmit={onSubmit}
