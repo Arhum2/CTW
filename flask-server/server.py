@@ -50,7 +50,7 @@ class Availability(db.Model):
     Wednesday = db.Column(db.TIME)
     Thursday = db.Column(db.TIME)
     Friday = db.Column(db.TIME)
-    VphoneNumber = db.Column(db.String(13))
+    phoneNumber = db.Column(db.String(13))
 
     def to_json(self):
         return{
@@ -61,7 +61,7 @@ class Availability(db.Model):
             "Wednesday": self.Wednesday.strftime("%I:%M %p"),
             "Thursday": self.Thursday.strftime("%I:%M %p"),
             "Friday": self.Friday.strftime("%I:%M %p"),
-            "phoneNumber": self.VphoneNumber,
+            "phoneNumber": self.phoneNumber,
         }
 
 
@@ -96,7 +96,7 @@ def get_availabilities():
             Wednesday=datetime.strptime(request.json["Wednesday"], "%I:%M %p").time(),
             Thursday=datetime.strptime(request.json["Thursday"], "%I:%M %p").time(),
             Friday=datetime.strptime(request.json["Friday"], "%I:%M %p").time(),
-            VphoneNumber=request.json['VphoneNumber'],
+            phoneNumber=request.json['phoneNumber'],
         )
 
         db.session.add(new_availabilities)

@@ -26,9 +26,9 @@ import {
             </TableRow>
           </TableHead>
           <TableBody>
-            {availability?.map((row, x) => (
+            {availability?.map((row, i) => (
               <TableRow
-                key={x}
+                key={i}
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
                 <TableCell component="th" scope="row">
@@ -39,7 +39,7 @@ import {
                 <TableCell align="right">{row.Wednesday}</TableCell>
                 <TableCell align="right">{row.Thursday}</TableCell>
                 <TableCell align="right">{row.Friday}</TableCell>
-                <TableCell align="right">{row.VphoneNumber}</TableCell>
+                <TableCell align="right">{row.phoneNumber}</TableCell>
                 <td>
                   <FaTimes onClick={() => onDelete(row.id)} />
                 </td>

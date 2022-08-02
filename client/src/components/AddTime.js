@@ -13,7 +13,7 @@ const AddTime = ({ onAdd }) => {
   const [wednesdayValue, setWednesdayValue] = useState(Date.now());
   const [thursdayValue, setThursdayValue] = useState(Date.now());
   const [fridayValue, setFridayValue] = useState(Date.now());
-  const [VphoneNumber, setVPhoneNumber] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -25,7 +25,7 @@ const AddTime = ({ onAdd }) => {
       Wednesday: format(wednesdayValue, "hh:mm a"),
       Thursday: format(thursdayValue, "hh:mm a"),
       Friday: format(fridayValue, "hh:mm a"),
-      VphoneNumber,
+      phoneNumber,
     });
     setVolunteerName("");
     setMondayValue("");
@@ -107,8 +107,8 @@ const AddTime = ({ onAdd }) => {
         id="outlined-basic"
         label="Volunteer Phone Number"
         variant="outlined"
-        value={VphoneNumber}
-        onChange={(e) => setVPhoneNumber(e.target.value)}
+        value={phoneNumber}
+        onChange={(e) => setPhoneNumber(e.target.value)}
       />
       <input
         type="submit"
