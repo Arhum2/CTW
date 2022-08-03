@@ -26,20 +26,24 @@ db = SQLAlchemy(app)
 class Calls(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     volunteerName = db.Column(db.String(50))
+    volunteerPhoneNumber = db.Column(db.String(13))
     seniorName = db.Column(db.String(50))
-    phoneNumber = db.Column(db.String(13))
-    Date = db.Column(db.DATE)
+    seniorPhoneNumber = db.Column(db.String(13))
     Time = db.Column(db.TIME)
+    Day = db.Column(db.String)
+    phoneNumber = db.Column(db.String(13))    
 
 
     def to_json(self):
         return {
             "id": self.id,
             "volunteerName": self.volunteerName,
+            "volunteerPhoneNumber": self.volunteerPhoneNumber,
             "seniorName": self.seniorName,
-            "phoneNumber": self.phoneNumber,
-            "Date": self.Date.strftime("%Y/%m/%d"),
+            "seniorPhoneNumber": self.seniorPhoneNumber,
             "Time": self.Time.strftime("%I:%M %p"),
+            "Day": self.Day,
+            "phoneNumber": self.phoneNumber,
         }
 
 class Availability(db.Model):
@@ -71,20 +75,21 @@ class Availability(db.Model):
 @app.route("/add_calls", methods=["POST"])
 def get_calls():
     if request.method == "POST":
-        json = request.get_json()
-
         new_calls = Calls(
             volunteerName=request.json["volunteerName"],
+            volunteerPhoneNumber=request.json["volunteerPhoneNumber"],
             seniorName=request.json["seniorName"],
-            phoneNumber=request.json["phoneNumber"],
-            Date=datetime.strptime(request.json["Date"], "%d/%b/%Y").date(),
+            seniorPhoneNumber=request.json["seniorPhoneNumber"],
             Time=datetime.strptime(request.json["Time"], "%I:%M %p").time(),
+            Day= request.json["Day"],
+            phoneNumber=request.json["phoneNumber"],
         )
 
         db.session.add(new_calls)
         db.session.commit()
 
         return "done", 201
+
 
 @app.route('/add_availability', methods=['POST'])
 def get_availabilities():

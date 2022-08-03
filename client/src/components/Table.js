@@ -12,17 +12,17 @@ import { FaTimes } from "react-icons/fa";
 const TableUI = ({ calls, onDelete }) => {
   return (
     <TableContainer component={Paper}>
-      <h2>Calls</h2>
+      <h2>Monday</h2>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
             <TableCell>Volunteer Name</TableCell>
-            <TableCell align="right">Monday</TableCell>
-            <TableCell align="right">Tuesday</TableCell>
-            <TableCell align="right">Wednesday</TableCell>
-            <TableCell align="right">Thursday</TableCell>
-            <TableCell align="right">Friday</TableCell>
             <TableCell align="right">Phone Number</TableCell>
+            <TableCell align="right">Email</TableCell>
+            <TableCell align="right">Senior</TableCell>
+            <TableCell align="right">Phone number</TableCell>
+            <TableCell align="right">Time</TableCell>
+            <TableCell align="right">Phone Line</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -35,7 +35,10 @@ const TableUI = ({ calls, onDelete }) => {
                 {row.volunteerName}
               </TableCell>
               <TableCell align="right">
-                <td colSpan='2'>{row.seniorName} @ {row.Time}</td>
+                <TableCell colSpan='2'>
+                  {row.seniorName} 
+                  {row.Time}
+                </TableCell>
               </TableCell>
               <td>
                 <FaTimes onClick={() => onDelete(row.id)} />

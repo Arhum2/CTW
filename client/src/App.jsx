@@ -10,6 +10,7 @@ function App() {
   const [availability, setAvailability] = useState([]);
   const [showAddCall, setShowAddCall] = useState(false);
   const [showAddTime, setShowAddTime] = useState(false);
+  const [showMonday, setShowMonday] = useState(false);
 
  // Fetching and Setting Call and Availability Data
   useEffect(() => {
@@ -93,7 +94,10 @@ function App() {
       <h1>CTW Call Planner</h1>
 
       {/*Calls Table component*/}
-      <TableUI calls={calls} onDelete={deleteCall} />
+      <button className="btn" onClick={() => setShowMonday(!showMonday)}>
+        Monday
+      </button>
+      {showMonday && <TableUI calls={calls} onDelete={deleteCall} />}
 
       {/*Calls Form & Button component*/}
       <button className="btn" onClick={() => setShowAddCall(!showAddCall)}>

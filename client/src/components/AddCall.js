@@ -3,15 +3,21 @@ import React from "react";
 import { TextField } from "@mui/material";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import FormControl from '@mui/material/FormControl';
 import { TimePicker } from "@mui/x-date-pickers/TimePicker";
 import { format } from "date-fns";
+import InputLabel from '@mui/material/InputLabel';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
+
 
 const AddCall = ({ onAdd }) => {
   const [volunteerName, setVolunteerName] = useState("");
+  const [volunteerPhoneNumber, setVolunteerPhoneNumber] = useState("")
   const [seniorName, setSeniorName] = useState("");
-  const [dateValue, setDateValue] = useState(Date.now());
+  const [seniorPhoneNumber, setSeniorPhoneNumber] = useState("");
   const [timeValue, setTimeValue] = useState(Date.now());
+  const [day, setDay] = useState();
   const [phoneNumber, setPhoneNumber] = useState("");
 
 
@@ -28,15 +34,19 @@ const AddCall = ({ onAdd }) => {
 
       onAdd({
         volunteerName,
+        volunteerPhoneNumber,
         seniorName,
-        Date: format(dateValue, "dd/MMM/yyyy"),
+        seniorPhoneNumber,
         Time: format(timeValue, "hh:mm a"),
+        Day: format(day, "dd/MMM/yyyy"),
         phoneNumber,
       });
       setVolunteerName("");
+      setVolunteerPhoneNumber('');
       setSeniorName("");
-      setDateValue("");
+      setSeniorPhoneNumber("");
       setTimeValue("");
+      setDay("");
       setPhoneNumber("");
     }
   };
@@ -52,34 +62,37 @@ const AddCall = ({ onAdd }) => {
         value={volunteerName}
         onChange={(e) => setVolunteerName(e.target.value)}
       />
+
       <></>
       <TextField
-        name="seniorName"
+        name="volunteerPhoneNumber"
+        id="outlined-basic"
+        label="Volunteer Phone Number"
+        variant="outlined"
+        value={volunteerPhoneNumber}
+        onChange={(e) => setVolunteerPhoneNumber(e.target.value)}
+      />
+
+      <></>
+      <TextField
+        name="SeniorName"
         id="outlined-basic"
         label="Senior Name"
         variant="outlined"
         value={seniorName}
         onChange={(e) => setSeniorName(e.target.value)}
       />
+
       <></>
-      <LocalizationProvider
-        dateAdapter={AdapterDateFns}
-        name="dateValue"
+      <TextField
+        name="seniorPhoneNumber"
         id="outlined-basic"
-        label="Date"
+        label="Senior Phone Number"
         variant="outlined"
-      >
-        <DatePicker
-          name="dateValue"
-          inputFormat="yyyy/MM/dd"
-          label="Date"
-          type="date"
-          mask="____/__/__"
-          value={dateValue}
-          onChange={(e) => setDateValue(e)}
-          renderInput={(params) => <TextField {...params} />}
-        />
-      </LocalizationProvider>
+        value={seniorPhoneNumber}
+        onChange={(e) => setSeniorPhoneNumber(e.target.value)}
+      />
+
       <></>
       <LocalizationProvider dateAdapter={AdapterDateFns}>
         <TimePicker
@@ -92,6 +105,26 @@ const AddCall = ({ onAdd }) => {
           renderInput={(params) => <TextField {...params} />}
         />
       </LocalizationProvider>
+
+      <></>
+      <FormControl sx={{ m: 1, minWidth: 80 }}>
+        <InputLabel id="demo-simple-select-autowidth">Day</InputLabel>
+        <Select
+          defaultValue=""
+          labelId="demo-simple-select-label"
+          id="demo-simple-select-autowidth"
+          value={day}
+          label="Day"
+          onChange={(e) => setDay(e)}
+        >
+          <MenuItem value={'Monday'}>Monday</MenuItem>
+          <MenuItem value={'Tuesday'}>Tuesday</MenuItem>
+          <MenuItem value={'Wednesday'}>Wednesday</MenuItem>
+          <MenuItem value={'Thursday'}>Thursday</MenuItem>
+          <MenuItem value={'Friday'}>Friday</MenuItem>
+        </Select>
+      </FormControl>
+
       <></>
       <TextField
         name="phoneNumber"
@@ -101,6 +134,7 @@ const AddCall = ({ onAdd }) => {
         value={phoneNumber}
         onChange={(e) => setPhoneNumber(e.target.value)}
       />
+       
       <></>
       <input
         type="submit"
