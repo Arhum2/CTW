@@ -1,8 +1,5 @@
-from ast import Delete
-from calendar import TUESDAY
 import os
 from datetime import datetime
-from enum import unique
 from dotenv import load_dotenv
 from flask import Flask, redirect, request
 from flask_sqlalchemy import SQLAlchemy
@@ -30,7 +27,7 @@ class Calls(db.Model):
     seniorName = db.Column(db.String(50))
     seniorPhoneNumber = db.Column(db.String(13))
     Time = db.Column(db.TIME)
-    Day = db.Column(db.String)
+    day = db.Column(db.String)
     phoneNumber = db.Column(db.String(13))    
 
 
@@ -42,7 +39,7 @@ class Calls(db.Model):
             "seniorName": self.seniorName,
             "seniorPhoneNumber": self.seniorPhoneNumber,
             "Time": self.Time.strftime("%I:%M %p"),
-            "Day": self.Day,
+            "day": self.day,
             "phoneNumber": self.phoneNumber,
         }
 
@@ -81,7 +78,7 @@ def get_calls():
             seniorName=request.json["seniorName"],
             seniorPhoneNumber=request.json["seniorPhoneNumber"],
             Time=datetime.strptime(request.json["Time"], "%I:%M %p").time(),
-            Day= request.json["Day"],
+            day= request.json["day"],
             phoneNumber=request.json["phoneNumber"],
         )
 

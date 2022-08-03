@@ -9,6 +9,7 @@ import { format } from "date-fns";
 import InputLabel from '@mui/material/InputLabel';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
+import { Box } from "@mui/system";
 
 
 const AddCall = ({ onAdd }) => {
@@ -24,6 +25,7 @@ const AddCall = ({ onAdd }) => {
   const onSubmit = (e) => {
     e.preventDefault();
     var x = parseInt(phoneNumber)
+    console.log(day)
     
     if(isNaN(x)) {
       alert("Please add a Phone Number")
@@ -38,7 +40,7 @@ const AddCall = ({ onAdd }) => {
         seniorName,
         seniorPhoneNumber,
         Time: format(timeValue, "hh:mm a"),
-        Day: format(day, "dd/MMM/yyyy"),
+        day,
         phoneNumber,
       });
       setVolunteerName("");
@@ -108,22 +110,20 @@ const AddCall = ({ onAdd }) => {
 
       <></>
       <FormControl sx={{ m: 1, minWidth: 80 }}>
-        <InputLabel id="demo-simple-select-autowidth">Day</InputLabel>
+        <InputLabel>Day</InputLabel>
         <Select
           defaultValue=""
-          labelId="demo-simple-select-label"
-          id="demo-simple-select-autowidth"
-          value={day}
           label="Day"
           onChange={(e) => setDay(e)}
         >
-          <MenuItem value={'Monday'}>Monday</MenuItem>
-          <MenuItem value={'Tuesday'}>Tuesday</MenuItem>
-          <MenuItem value={'Wednesday'}>Wednesday</MenuItem>
-          <MenuItem value={'Thursday'}>Thursday</MenuItem>
-          <MenuItem value={'Friday'}>Friday</MenuItem>
+          <MenuItem value='Mon'>Monday</MenuItem>
+          <MenuItem value='Tue'>Tuesday</MenuItem>
+          <MenuItem value='Wed'>Wednesday</MenuItem>
+          <MenuItem value='Thur'>Thursday</MenuItem>
+          <MenuItem value='Fri'>Friday</MenuItem>
         </Select>
       </FormControl>
+
 
       <></>
       <TextField
