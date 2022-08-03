@@ -18,10 +18,10 @@ const TableUI = ({ calls, onDelete }) => {
           <TableRow>
             <TableCell>Volunteer Name</TableCell>
             <TableCell align="right">Phone Number</TableCell>
-            <TableCell align="right">Email</TableCell>
             <TableCell align="right">Senior</TableCell>
             <TableCell align="right">Phone number</TableCell>
             <TableCell align="right">Time</TableCell>
+            <TableCell align="right">Day</TableCell>
             <TableCell align="right">Phone Line</TableCell>
           </TableRow>
         </TableHead>
@@ -34,12 +34,12 @@ const TableUI = ({ calls, onDelete }) => {
               <TableCell component="th" scope="row">
                 {row.volunteerName}
               </TableCell>
-              <TableCell align="right">
-                <TableCell colSpan='2'>
-                  {row.seniorName} 
-                  {row.Time}
-                </TableCell>
-              </TableCell>
+              <TableCell align="right">{row.volunteerPhoneNumber}</TableCell>
+                <TableCell align="right">{row.seniorName}</TableCell>
+                <TableCell align="right">{row.seniorPhoneNumber}</TableCell>
+                <TableCell align="right">{row.Time}</TableCell>
+                <TableCell align="right">{row.day}</TableCell>
+                <TableCell align="right">{row.phoneNumber}</TableCell>
               <td>
                 <FaTimes onClick={() => onDelete(row.id)} />
               </td>

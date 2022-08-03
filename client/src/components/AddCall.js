@@ -114,13 +114,13 @@ const AddCall = ({ onAdd }) => {
         <Select
           defaultValue=""
           label="Day"
-          onChange={(e) => setDay(e)}
+          onChange={(e) => setDay(e.target.value)}
         >
-          <MenuItem value='Mon'>Monday</MenuItem>
-          <MenuItem value='Tue'>Tuesday</MenuItem>
-          <MenuItem value='Wed'>Wednesday</MenuItem>
-          <MenuItem value='Thur'>Thursday</MenuItem>
-          <MenuItem value='Fri'>Friday</MenuItem>
+          <MenuItem value='Monday'>Monday</MenuItem>
+          <MenuItem value='Tuesday'>Tuesday</MenuItem>
+          <MenuItem value='Wednesday'>Wednesday</MenuItem>
+          <MenuItem value='Thursday'>Thursday</MenuItem>
+          <MenuItem value='Friday'>Friday</MenuItem>
         </Select>
       </FormControl>
 
