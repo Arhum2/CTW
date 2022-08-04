@@ -11,6 +11,10 @@ function App() {
   const [showAddCall, setShowAddCall] = useState(false);
   const [showAddTime, setShowAddTime] = useState(false);
   const [showMonday, setShowMonday] = useState(false);
+  const [showTuesday, setShowTuesday] = useState(false);
+  const [showWednesday, setShowWednesday] = useState(false);
+  const [showThursday, setShowThursday] = useState(false);
+  const [showFriday, setShowFriday] = useState(false);
 
  // Fetching and Setting Call and Availability Data
   useEffect(() => {
@@ -89,22 +93,35 @@ function App() {
      setAvailability(availability.filter((availability) => availability.id !== id));
   };
 
+
   return (
     <div>
       <h1>CTW Call Planner</h1>
-
+      
+      <h2>
       {/*Calls Table component*/}
-      <button className="btn" onClick={() => setShowMonday(!showMonday)}>
-        Monday
-      </button>
+      <button className="btn" onClick={() => setShowMonday(!showMonday)}>Monday</button>
       {showMonday && <TableUI calls={calls} onDelete={deleteCall} />}
-
+      
+      <button className="btn" onClick={() => setShowTuesday(!showTuesday)}>Tuesday</button>
+      {showTuesday && <TableUI calls={calls} onDelete={deleteCall} />}
+      
+      <button className="btn" onClick={() => setShowWednesday(!showWednesday)}>Wednesday</button>
+      {showWednesday && <TableUI calls={calls} onDelete={deleteCall} />}
+      
+      <button className="btn" onClick={() => setShowThursday(!showThursday)}>Thursday</button>
+      {showThursday && <TableUI calls={calls} onDelete={deleteCall} />}
+      
+      <button className="btn" onClick={() => setShowFriday(!showFriday)}>Friday</button>
+      {showFriday && <TableUI calls={calls} onDelete={deleteCall} />}
+      
+      
       {/*Calls Form & Button component*/}
       <button className="btn" onClick={() => setShowAddCall(!showAddCall)}>
         Add Call
       </button>
       {showAddCall && <AddCall onAdd={addCall} />}
-
+      </h2>
       {/*Availability Form & Button component*/}
       <Availabletable availability={availability} onDelete={deleteAvailability} />
       <button className="btn" onClick={() => setShowAddTime(!showAddTime)}>
