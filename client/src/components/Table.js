@@ -9,10 +9,10 @@ import {
 } from "@mui/material";
 import { FaTimes } from "react-icons/fa";
 
-const TableUI = ({ calls, onDelete }) => {
+const TableUI = ({ dayOfWeek, calls, onDelete }) => {
   return (
     <TableContainer component={Paper}>
-      <h2>Monday</h2>
+      <h3>{dayOfWeek}</h3>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
@@ -26,7 +26,7 @@ const TableUI = ({ calls, onDelete }) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {calls?.map((row, i) => (
+        {calls?.filter(row => row.day.toLowerCase() === dayOfWeek.toLowerCase()).map((row, i) => (
             <TableRow
               key={i}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}

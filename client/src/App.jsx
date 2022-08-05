@@ -93,7 +93,7 @@ function App() {
      setAvailability(availability.filter((availability) => availability.id !== id));
   };
 
-
+  console.log(calls)
   return (
     <div>
       <h1>CTW Call Planner</h1>
@@ -101,19 +101,19 @@ function App() {
       <h2>
       {/*Calls Table component*/}
       <button className="btn" onClick={() => setShowMonday(!showMonday)}>Monday</button>
-      {showMonday && <TableUI calls={calls} onDelete={deleteCall} />}
+      {showMonday && <TableUI dayOfWeek='Monday' calls={calls} onDelete={deleteCall} />}
       
       <button className="btn" onClick={() => setShowTuesday(!showTuesday)}>Tuesday</button>
-      {showTuesday && <TableUI calls={calls} onDelete={deleteCall} />}
+      {showTuesday && <TableUI dayOfWeek='Tuesday' calls={calls} onDelete={deleteCall} />}
       
       <button className="btn" onClick={() => setShowWednesday(!showWednesday)}>Wednesday</button>
-      {showWednesday && <TableUI calls={calls} onDelete={deleteCall} />}
+      {showWednesday && <TableUI dayOfWeek='Wednesday' calls={calls} onDelete={deleteCall} />}
       
       <button className="btn" onClick={() => setShowThursday(!showThursday)}>Thursday</button>
-      {showThursday && <TableUI calls={calls} onDelete={deleteCall} />}
+      {showThursday && <TableUI dayOfWeek='Thursday' calls={calls} onDelete={deleteCall} />}
       
       <button className="btn" onClick={() => setShowFriday(!showFriday)}>Friday</button>
-      {showFriday && <TableUI calls={calls} onDelete={deleteCall} />}
+      {showFriday && <TableUI dayOfWeek='Friday' calls={calls} onDelete={deleteCall} />}
       
       
       {/*Calls Form & Button component*/}
