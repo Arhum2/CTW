@@ -25,7 +25,6 @@ function Row({ calls }) {
       setCallData(calls);
     },[calls]);
   const [open, setOpen] = React.useState(false);
-if(!calls) return;
 return(
         <React.Fragment>
           <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
@@ -86,7 +85,8 @@ return(
       );
     }
 
-    function createData(day) {
+    function createData(day, callData) {
+        console.log(callData)
         for(let i = 0; i < callData.day[day].length; i++) {
             return {
                 day,
