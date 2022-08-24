@@ -10,6 +10,7 @@ import {
 import { FaTimes } from "react-icons/fa";
 
 const TableUI = ({ dayOfWeek, calls, onDelete }) => {
+  console.log(calls)
   return (
     <TableContainer component={Paper}>
       <h3>{dayOfWeek}</h3>
@@ -50,5 +51,7 @@ const TableUI = ({ dayOfWeek, calls, onDelete }) => {
     </TableContainer>
   );
 };
+
+
 
 export default TableUI;

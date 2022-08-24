@@ -4,6 +4,7 @@ import AddTime from "./components/AddTime";
 import AddCall from "./components/AddCall";
 import React, { useState, useEffect } from "react";
 import "./index.css";
+import CollapsibleTable from "./components/text";
 
 function App() {
   const [calls, setCalls] = useState([]);
@@ -93,29 +94,33 @@ function App() {
      setAvailability(availability.filter((availability) => availability.id !== id));
   };
 
-  console.log(calls)
+
   return (
     <div>
       <h1>CTW Call Planner</h1>
       
       <h2>
       {/*Calls Table component*/}
-      <button className="btn" onClick={() => setShowMonday(!showMonday)}>Monday</button>
-      {showMonday && <TableUI dayOfWeek='Monday' calls={calls} onDelete={deleteCall} />}
+      <div className="topnav">
+        <button className="btn" onClick={() => setShowMonday(!showMonday)}>Monday</button>
+        {showMonday && <TableUI dayOfWeek='Monday' calls={calls} onDelete={deleteCall} />}
+        
+        <button className="btn" onClick={() => setShowTuesday(!showTuesday)}>Tuesday</button>
+        {showTuesday && <TableUI dayOfWeek='Tuesday' calls={calls} onDelete={deleteCall} />}
+        
+        <button className="btn" onClick={() => setShowWednesday(!showWednesday)}>Wednesday</button>
+        {showWednesday && <TableUI dayOfWeek='Wednesday' calls={calls} onDelete={deleteCall} />}
+        
+        <button className="btn" onClick={() => setShowThursday(!showThursday)}>Thursday</button>
+        {showThursday && <TableUI dayOfWeek='Thursday' calls={calls} onDelete={deleteCall} />}
+        
+        <button className="btn" onClick={() => setShowFriday(!showFriday)}>Friday</button>
+        {showFriday && <TableUI dayOfWeek='Friday' calls={calls} onDelete={deleteCall} />}
+      </div>
       
-      <button className="btn" onClick={() => setShowTuesday(!showTuesday)}>Tuesday</button>
-      {showTuesday && <TableUI dayOfWeek='Tuesday' calls={calls} onDelete={deleteCall} />}
-      
-      <button className="btn" onClick={() => setShowWednesday(!showWednesday)}>Wednesday</button>
-      {showWednesday && <TableUI dayOfWeek='Wednesday' calls={calls} onDelete={deleteCall} />}
-      
-      <button className="btn" onClick={() => setShowThursday(!showThursday)}>Thursday</button>
-      {showThursday && <TableUI dayOfWeek='Thursday' calls={calls} onDelete={deleteCall} />}
-      
-      <button className="btn" onClick={() => setShowFriday(!showFriday)}>Friday</button>
-      {showFriday && <TableUI dayOfWeek='Friday' calls={calls} onDelete={deleteCall} />}
-      
-      
+      {calls && ( <> <CollapsibleTable calls={calls} /> </> )}
+
+
       {/*Calls Form & Button component*/}
       <button className="btn" onClick={() => setShowAddCall(!showAddCall)}>
         Add Call
