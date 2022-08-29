@@ -121,7 +121,7 @@ return(
 
   
 
-const rows = [
+const row = [
   {
     volunteerName: "john",
     volunteerPhoneNumber: "11091700",
@@ -138,7 +138,8 @@ const rows = [
   // createData("Friday", callData),
 ];
 
-export default function CollapsibleTable() {
+
+export default function CollapsibleTable({ rows }) {
   return (
     <TableContainer component={Paper}>
       <Table aria-label="collapsible table">
