@@ -131,12 +131,12 @@ const row = [
 ];
 
 
-export default function CollapsibleTable({ rows }) {
+export default function CollapsibleTable({ rowGroups }) {
   return (
     <TableContainer component={Paper}>
       <Table aria-label="collapsible table">
         <TableBody>
-          {rows.map((row) => (
+          {rowGroups.map((row) => (
             <Row key={row.day} row={row} />
           ))}
         </TableBody>
