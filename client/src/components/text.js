@@ -18,15 +18,15 @@ import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 
 
 
-function Row({ calls }) {
+function Row({ rowGroup }) {
 
   function createData(day) {
     const arr = [];
-    if(!callData) return [];
-    for(let i = 0; i < callData.day[day].length; i++) {
+    if(!rowGroup) return [];
+    for(let i = 0; i < rowGroup.day[day].length; i++) {
         arr.push({
             day,
-            data: callData.day[day],
+            data: rowGroup.day[day],
         })
     }
     return arr;
@@ -46,7 +46,7 @@ return(
               </IconButton>
             </TableCell>
             <TableCell component="th" scope="row">
-              {callData.day}
+              {rowGroup.day}
             </TableCell>
           </TableRow>
           <TableRow>
@@ -69,18 +69,18 @@ return(
                       </TableRow>
                     </TableHead>
                     <TableBody>
-                      {callData.data.map((rowData) => (
-                        <TableRow key={callData.day}>
+                      {rowGroup.data.map((rowData) => (
+                        <TableRow key={rowGroup.day}>
                           <TableCell component="th" scope="row">
-                            {callData.day}
+                            {rowGroup.day}
                           </TableCell>
-                          <TableCell>{callData.volunteerName}</TableCell>
-                          <TableCell>{callData.volunteerPhoneNumber}</TableCell>
-                          <TableCell>{callData.seniorName}</TableCell>
-                          <TableCell>{callData.seniorPhoneNumber}</TableCell>
-                          <TableCell>{callData.Time}</TableCell>
-                          <TableCell>{callData.day}</TableCell>
-                          <TableCell>{callData.phoneNumber}</TableCell>
+                          <TableCell>{rowGroup.volunteerName}</TableCell>
+                          <TableCell>{rowGroup.volunteerPhoneNumber}</TableCell>
+                          <TableCell>{rowGroup.seniorName}</TableCell>
+                          <TableCell>{rowGroup.seniorPhoneNumber}</TableCell>
+                          <TableCell>{rowGroup.Time}</TableCell>
+                          <TableCell>{rowGroup.day}</TableCell>
+                          <TableCell>{rowGroup.phoneNumber}</TableCell>
                         </TableRow>
                       ))}
                     </TableBody>
