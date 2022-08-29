@@ -19,11 +19,27 @@ import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 
 
 function Row({ calls }) {
-    const [callData, setCallData] = useState()
-    useEffect(()=>{
-      if(!calls) return;
-      setCallData(calls);
-    },[calls]);
+
+  function createData(day) {
+    const arr = [];
+    if(!callData) return [];
+    for(let i = 0; i < callData.day[day].length; i++) {
+        arr.push({
+            day,
+            data: callData.day[day],
+        })
+    }
+    return arr;
+}
+
+
+  const [callData, setCallData] = useState([]) 
+  useEffect(()=>{
+        if(!calls){
+          setCallData([])  // this doesn't make much sense but ....
+        }
+        else{setCallData(calls)}
+      },[calls]);
   const [open, setOpen] = React.useState(false);
 return(
         <React.Fragment>
@@ -85,15 +101,7 @@ return(
       );
     }
 
-    function createData(day, callData) {
-        console.log(callData)
-        for(let i = 0; i < callData.day[day].length; i++) {
-            return {
-                day,
-                data: callData.day[day],
-            };
-        }
-    }
+
 
     Row.propTypes = {
       row: PropTypes.shape({
@@ -107,18 +115,27 @@ return(
             day: PropTypes.string,
             phoneNumber: PropTypes.string.isRequired,
           })
-        ).isRequired,
+        )
       })
     };
 
   
 
 const rows = [
-  createData("Monday"),
-  createData("Tuesday"),
-  createData("Wednesday"),
-  createData("Thursday"),
-  createData("Friday"),
+  {
+    volunteerName: "john",
+    volunteerPhoneNumber: "11091700",
+    seniorName: "doe",
+    seniorPhoneNumber: "1234",
+    Time: "time",
+    day: "Monday",
+    phoneNumber: "45345",
+  },
+  // createData("Monday", callData),
+  // createData("Tuesday", callData),
+  // createData("Wednesday", callData),
+  // createData("Thursday", callData),
+  // createData("Friday", callData),
 ];
 
 export default function CollapsibleTable() {

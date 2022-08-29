@@ -94,6 +94,8 @@ function App() {
      setAvailability(availability.filter((availability) => availability.id !== id));
   };
 
+  console.log(calls)
+
 
   return (
     <div>
