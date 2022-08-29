@@ -137,7 +137,7 @@ export default function CollapsibleTable({ rowGroups }) {
       <Table aria-label="collapsible table">
         <TableBody>
           {rowGroups.map((row) => (
-            <Row key={row.day} row={row} />
+            <Row key={rowGroup.day} rowGroup={row} />
           ))}
         </TableBody>
       </Table>
