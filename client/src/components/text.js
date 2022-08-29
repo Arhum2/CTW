@@ -32,14 +32,6 @@ function Row({ calls }) {
     return arr;
 }
 
-
-  const [callData, setCallData] = useState([]) 
-  useEffect(()=>{
-        if(!calls){
-          setCallData([])  // this doesn't make much sense but ....
-        }
-        else{setCallData(calls)}
-      },[calls]);
   const [open, setOpen] = React.useState(false);
 return(
         <React.Fragment>

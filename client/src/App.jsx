@@ -120,7 +120,7 @@ function App() {
         {showFriday && <TableUI dayOfWeek='Friday' calls={calls} onDelete={deleteCall} />}
       </div>
       
-      {calls && ( <> <CollapsibleTable calls={calls} /> </> )}
+      {calls.length > 0 && ( <> <CollapsibleTable calls={calls} /> </> )}
 
 
       {/*Calls Form & Button component*/}
