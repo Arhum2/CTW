@@ -96,6 +96,17 @@ function App() {
 
   console.log(calls)
 
+  function createData(rowGroup, day) {
+    const arr = [];
+    if(!rowGroup) return [];
+    for(let i = 0; i < rowGroup.day[day].length; i++) {
+        arr.push({
+            day,
+            data: rowGroup.day[day],
+        })
+    }
+    return arr;
+  }
 
   return (
     <div>
@@ -120,7 +131,7 @@ function App() {
         {showFriday && <TableUI dayOfWeek='Friday' calls={calls} onDelete={deleteCall} />}
       </div>
       
-      {calls.length > 0 && ( <> <CollapsibleTable calls={calls} /> </> )}
+      {calls.length > 0 && ( <> <CollapsibleTable rowGroups={calls} /> </> )}
 
 
       {/*Calls Form & Button component*/}

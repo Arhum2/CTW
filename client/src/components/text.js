@@ -20,17 +20,6 @@ import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 
 function Row({ rowGroup }) {
 
-  function createData(day) {
-    const arr = [];
-    if(!rowGroup) return [];
-    for(let i = 0; i < rowGroup.day[day].length; i++) {
-        arr.push({
-            day,
-            data: rowGroup.day[day],
-        })
-    }
-    return arr;
-}
 
   const [open, setOpen] = React.useState(false);
 return(
