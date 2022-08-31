@@ -58,18 +58,18 @@ function Row({ rowGroup }) {
                       </TableRow>
                     </TableHead>
                     <TableBody>
-                      {rowGroup.data.map((rowGroup) => (
-                        <TableRow key={rowGroup.day}>
+                      {rowGroup.data.map((row) => (
+                        <TableRow key={row.day}>
                           <TableCell component="th" scope="row">
-                            {rowGroup.day}
+                            {row.day}
                           </TableCell>
-                          <TableCell>{rowGroup.volunteerName}</TableCell>
-                          <TableCell>{rowGroup.volunteerPhoneNumber}</TableCell>
-                          <TableCell>{rowGroup.seniorName}</TableCell>
-                          <TableCell>{rowGroup.seniorPhoneNumber}</TableCell>
-                          <TableCell>{rowGroup.Time}</TableCell>
-                          <TableCell>{rowGroup.day}</TableCell>
-                          <TableCell>{rowGroup.phoneNumber}</TableCell>
+                          <TableCell>{row.volunteerName}</TableCell>
+                          <TableCell>{row.volunteerPhoneNumber}</TableCell>
+                          <TableCell>{row.seniorName}</TableCell>
+                          <TableCell>{row.seniorPhoneNumber}</TableCell>
+                          <TableCell>{row.Time}</TableCell>
+                          <TableCell>{row.day}</TableCell>
+                          <TableCell>{row.phoneNumber}</TableCell>
                         </TableRow>
                       ))}
                     </TableBody>
@@ -82,28 +82,21 @@ function Row({ rowGroup }) {
       );
     }
 
-
-
     Row.propTypes = {
       row: PropTypes.shape({
         data: PropTypes.arrayOf(
           PropTypes.shape({
-            volunteerName: PropTypes.string.isRequired,
-            volunteerPhoneNumber: PropTypes.string.isRequired,
-            seniorName: PropTypes.string.isRequired,
-            seniorPhoneNumber: PropTypes.string.isRequired,
-            Time: PropTypes.object.isRequired,
+            volunteerName: PropTypes.string,
+            volunteerPhoneNumber: PropTypes.string,
+            seniorName: PropTypes.string,
+            seniorPhoneNumber: PropTypes.string,
+            Time: PropTypes.object,
             day: PropTypes.string,
-            phoneNumber: PropTypes.string.isRequired,
+            phoneNumber: PropTypes.string,
           })
         )
       })
     };
-
-
-
-
-
 
 export default function CollapsibleTable({ rowGroups }) {
   return (
@@ -111,7 +104,7 @@ export default function CollapsibleTable({ rowGroups }) {
       <Table aria-label="collapsible table">
         <TableBody>
           {rowGroups.map((row) => (
-            <Row key={rowGroup.day} rowGroup={row} />
+            <Row key={row.day} rowGroup={row} />
           ))}
         </TableBody>
       </Table>
