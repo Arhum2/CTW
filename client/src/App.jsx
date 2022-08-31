@@ -166,7 +166,7 @@ function App() {
         {showFriday && <TableUI dayOfWeek='Friday' calls={calls} onDelete={deleteCall} />}
       </div>
       
-      {calls.length > 0 && ( <> <CollapsibleTable rowGroups={calls} /> </> )}
+      {calls.length > 0 && ( <> <CollapsibleTable rowGroups={rowGroups} /> </> )}
 
 
       {/*Calls Form & Button component*/}
