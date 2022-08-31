@@ -95,19 +95,6 @@ function App() {
   };
 
   console.log(calls)
-
-  function createData(rowGroup, day) {
-    const arr = [];
-    if(!rowGroup) return [];
-    for(let i = 0; i < rowGroup.day[day].length; i++) {
-        arr.push({
-            day,
-            data: rowGroup.day[day],
-        })
-    }
-    return arr;
-  }
-
   return (
     <div>
       <h1>CTW Call Planner</h1>
