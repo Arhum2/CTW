@@ -94,7 +94,55 @@ function App() {
      setAvailability(availability.filter((availability) => availability.id !== id));
   };
 
-  console.log(calls)
+  const row = [
+    {
+      volunteerName: "john",
+      volunteerPhoneNumber: "11091700",
+      seniorName: "doe",
+      seniorPhoneNumber: "1234",
+      Time: "time",
+      day: "Monday",
+      phoneNumber: "45345",
+    },{
+      volunteerName: "lorem",
+      volunteerPhoneNumber: "234234",
+      seniorName: "ipsum",
+      seniorPhoneNumber: "122342334",
+      Time: "time",
+      day: "Tuesday",
+      phoneNumber: "435345",
+    },{
+      volunteerName: "SundayVolunteer",
+      volunteerPhoneNumber: "68568",
+      seniorName: "fdgsdfg",
+      seniorPhoneNumber: "SundayGuy",
+      Time: "time",
+      day: "Sunday",
+      phoneNumber: "435345",
+    },
+    // createData("Monday", callData),
+    // createData("Tuesday", callData),
+    // createData("Wednesday", callData),
+    // createData("Thursday", callData),
+    // createData("Friday", callData),
+  ];
+
+  const mon = row.filter((r) => r.day.toLowerCase() === 'monday')
+  const tue = row.filter((r) => r.day.toLowerCase() === 'tuesday')
+  const wen = row.filter((r) => r.day.toLowerCase() === 'wednesday')
+  const thu = row.filter((r) => r.day.toLowerCase() === 'thursday')
+  const fri = row.filter((r) => r.day.toLowerCase() === 'friday')
+
+  const rowGroups = [
+    { day: 'Monday', data: mon },
+    { day: 'Tuesday', data: tue },
+    { day: 'Wednesday', data: tue },
+    { day: 'Thursday', data: tue },
+    { day: 'Friday', data: tue },
+  ]
+
+  console.log(rowGroups)
+  
   return (
     <div>
       <h1>CTW Call Planner</h1>
