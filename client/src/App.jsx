@@ -122,11 +122,11 @@ function App() {
     },
   ];
 
-  const mon = calls.filter((r) => r.day.toLowerCase() === "monday");
-  const tue = calls.filter((r) => r.day.toLowerCase() === "tuesday");
-  const wen = calls.filter((r) => r.day.toLowerCase() === "wednesday");
-  const thu = calls.filter((r) => r.day.toLowerCase() === "thursday");
-  const fri = calls.filter((r) => r.day.toLowerCase() === "friday");
+  const mon = row.filter((r) => r.day.toLowerCase() === "monday");
+  const tue = row.filter((r) => r.day.toLowerCase() === "tuesday");
+  const wen = row.filter((r) => r.day.toLowerCase() === "wednesday");
+  const thu = row.filter((r) => r.day.toLowerCase() === "thursday");
+  const fri = row.filter((r) => r.day.toLowerCase() === "friday");
 
   const rowGroups = [
     { day: "Monday", data: mon },
