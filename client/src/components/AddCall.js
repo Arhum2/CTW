@@ -7,7 +7,7 @@ import FormControl from '@mui/material/FormControl';
 import { TimePicker } from "@mui/x-date-pickers/TimePicker";
 import { format } from "date-fns";
 import InputLabel from '@mui/material/InputLabel';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
+import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 
 

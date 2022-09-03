@@ -120,26 +120,21 @@ function App() {
       day: "Sunday",
       phoneNumber: "435345",
     },
-    // createData("Monday", callData),
-    // createData("Tuesday", callData),
-    // createData("Wednesday", callData),
-    // createData("Thursday", callData),
-    // createData("Friday", callData),
   ];
 
-  const mon = calls.filter((r) => r.day.toLowerCase() === 'monday')
-  const tue = calls.filter((r) => r.day.toLowerCase() === 'tuesday')
-  const wen = calls.filter((r) => r.day.toLowerCase() === 'wednesday')
-  const thu = calls.filter((r) => r.day.toLowerCase() === 'thursday')
-  const fri = calls.filter((r) => r.day.toLowerCase() === 'friday')
+  const mon = calls.filter((r) => r.day.toLowerCase() === "monday");
+  const tue = calls.filter((r) => r.day.toLowerCase() === "tuesday");
+  const wen = calls.filter((r) => r.day.toLowerCase() === "wednesday");
+  const thu = calls.filter((r) => r.day.toLowerCase() === "thursday");
+  const fri = calls.filter((r) => r.day.toLowerCase() === "friday");
 
   const rowGroups = [
-    { day: 'Monday', data: mon },
-    { day: 'Tuesday', data: tue },
-    { day: 'Wednesday', data: tue },
-    { day: 'Thursday', data: tue },
-    { day: 'Friday', data: tue },
-  ]
+    { day: "Monday", data: mon },
+    { day: "Tuesday", data: tue },
+    { day: "Wednesday", data: wen },
+    { day: "Thursday", data: thu },
+    { day: "Friday", data: fri }
+  ];
 
   console.log(rowGroups)
   
@@ -166,7 +161,12 @@ function App() {
         {showFriday && <TableUI dayOfWeek='Friday' calls={calls} onDelete={deleteCall} />}
       </div>
       
-      {calls.length > 0 && ( <> <CollapsibleTable rowGroups={rowGroups} /> </> )}
+      {calls.length > 0 && (
+          <>
+            {" "}
+            <CollapsibleTable rowGroups={rowGroups} />{" "}
+          </>
+        )}
 
 
       {/*Calls Form & Button component*/}
