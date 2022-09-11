@@ -62,7 +62,6 @@ function Row({ rowGroup }) {
                       <TableCell>{row.seniorName}</TableCell>
                       <TableCell>{row.seniorPhoneNumber}</TableCell>
                       <TableCell>{row.Time}</TableCell>
-                      <TableCell>{row.day}</TableCell>
                       <TableCell>{row.phoneNumber}</TableCell>
                     </TableRow>
                   ))}
