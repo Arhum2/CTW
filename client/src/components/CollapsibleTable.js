@@ -12,7 +12,6 @@ import PropTypes from "prop-types";
 import Box from "@mui/material/Box";
 import Collapse from "@mui/material/Collapse";
 import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import { FaTimes } from "react-icons/fa";
@@ -63,7 +62,8 @@ function Row({ onDelete, rowGroup }) {
                       <TableCell align="right">{row.Time}</TableCell>
                       <TableCell align="right">{row.phoneNumber}</TableCell>
                       <td>
-                        <FaTimes onClick={() => onDelete(row.id)} />
+                        <FaTimes onClick={()=>{console.log("working")}} />
+                        <FaTimes onClick={()=> onDelete()} />
                       </td>
                     </TableRow>
                   ))}
