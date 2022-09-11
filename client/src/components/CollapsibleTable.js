@@ -43,12 +43,11 @@ function Row({ onDelete, rowGroup }) {
               <Table size="small" aria-label="purchases">
                 <TableHead>
                   <TableRow>
-                    <TableCell>volunteer Name</TableCell>
-                    <TableCell>Phone Number</TableCell>
+                    <TableCell >Volunteer Name</TableCell>
+                    <TableCell align="right">Phone Number</TableCell>
                     <TableCell align="right">Senior Name</TableCell>
                     <TableCell align="right">Phone Number</TableCell>
                     <TableCell align="right">Time</TableCell>
-                    <TableCell align="right">Day</TableCell>
                     <TableCell align="right">Phone Line</TableCell>
                   </TableRow>
                 </TableHead>
@@ -56,9 +55,8 @@ function Row({ onDelete, rowGroup }) {
                   {rowGroup.data.map((row) => (
                     <TableRow key={row.id}>
                       <TableCell component="th" scope="row">
-                        {row.id}
+                        {row.volunteerName}
                       </TableCell>
-                      <TableCell align="left">{row.volunteerName}</TableCell>
                       <TableCell align="right">{row.volunteerPhoneNumber}</TableCell>
                       <TableCell align="right">{row.seniorName}</TableCell>
                       <TableCell align="right">{row.seniorPhoneNumber}</TableCell>
