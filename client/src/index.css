@@ -41,6 +41,8 @@ body {
   font-family: inherit;
 }
 
+.pointer {cursor: pointer;}
+
 .btn:focus {
   outline: none;
 }

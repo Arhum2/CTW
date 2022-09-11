@@ -107,14 +107,8 @@ function App() {
       <h1 align='center'>CTW Call Planner</h1>
       
       <h2>
-      
-      {calls.length > 0 && (
-          <>
-            {" "}
-            <CollapsibleTable onDelete={deleteCall} rowGroups={rowGroups} />{" "}
-          </>
-        )}
-
+    
+      <CollapsibleTable onDelete={deleteCall} rowGroups={rowGroups}/>
 
       {/*Calls Form & Button component*/}
       <button className="btn" onClick={() => setShowAddCall(!showAddCall)}>

@@ -14,18 +14,19 @@ import Collapse from "@mui/material/Collapse";
 import IconButton from "@mui/material/IconButton";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-import { FaTimes } from "react-icons/fa";
+import "../index.css"
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
 
 function Row({ onDelete, rowGroup }) {
   const [open, setOpen] = React.useState(false);
   return (
-    <React.Fragment>
+    <React.Fragment >
       <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
         <TableCell>
           <IconButton
             aria-label="expand row"
-            size="small"
+            size="medium"
             onClick={() => setOpen(!open)}
           >
             {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
@@ -38,17 +39,19 @@ function Row({ onDelete, rowGroup }) {
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
           <Collapse in={open} timeout="auto" unmountOnExit>
-            <Box sx={{ margin: 1 }}>
+            <Box >
               <Table size="small" aria-label="purchases">
                 <TableHead>
+
                   <TableRow>
-                    <TableCell >Volunteer Name</TableCell>
-                    <TableCell align="right">Phone Number</TableCell>
-                    <TableCell align="right">Senior Name</TableCell>
-                    <TableCell align="right">Phone Number</TableCell>
-                    <TableCell align="right">Time</TableCell>
-                    <TableCell align="right">Phone Line</TableCell>
+                    <TableCell sx={{ fontWeight: 'bold' }}>Volunteer Name</TableCell>
+                    <TableCell sx={{ fontWeight: 'bold' }} align="right">Phone Number</TableCell>
+                    <TableCell sx={{ fontWeight: 'bold' }} align="right">Senior Name</TableCell>
+                    <TableCell sx={{ fontWeight: 'bold' }} align="right">Phone Number</TableCell>
+                    <TableCell sx={{ fontWeight: 'bold' }} align="right">Time</TableCell>
+                    <TableCell sx={{ fontWeight: 'bold' }} align="right">Phone Line</TableCell>
                   </TableRow>
+
                 </TableHead>
                 <TableBody>
                   {rowGroup.data.map((row) => (
@@ -62,8 +65,7 @@ function Row({ onDelete, rowGroup }) {
                       <TableCell align="right">{row.Time}</TableCell>
                       <TableCell align="right">{row.phoneNumber}</TableCell>
                       <td>
-                        <FaTimes onClick={()=>{console.log("working")}} />
-                        <FaTimes onClick={()=> onDelete()} />
+                        <DeleteForeverIcon className="pointer" onClick={()=> onDelete(row.id)}></DeleteForeverIcon>
                       </td>
                     </TableRow>
                   ))}
@@ -93,13 +95,13 @@ Row.propTypes = {
   })
 };
 
-export default function CollapsibleTable({ rowGroups }) {
+export default function CollapsibleTable({ rowGroups, onDelete }) {
   return (
     <TableContainer component={Paper}>
       <Table aria-label="collapsible table">
         <TableBody>
           {rowGroups.map((row) => (
-            <Row key={row.day} rowGroup={row} />
+            <Row onDelete={onDelete} key={row.id} rowGroup={row}></Row>
           ))}
         </TableBody>
       </Table>
