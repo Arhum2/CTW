@@ -101,19 +101,17 @@ function App() {
     { day: "Thursday", data: thu },
     { day: "Friday", data: fri }
   ];
-
-  console.log(rowGroups)
   
   return (
     <div>
-      <h1>CTW Call Planner</h1>
+      <h1 align='center'>CTW Call Planner</h1>
       
       <h2>
       
       {calls.length > 0 && (
           <>
             {" "}
-            <CollapsibleTable rowGroups={rowGroups} />{" "}
+            <CollapsibleTable onDelete={deleteCall} rowGroups={rowGroups} />{" "}
           </>
         )}
 

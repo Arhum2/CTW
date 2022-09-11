@@ -1,20 +1,24 @@
+import {
+  Paper,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+} from "@mui/material";
 import * as React from "react";
 import PropTypes from "prop-types";
 import Box from "@mui/material/Box";
 import Collapse from "@mui/material/Collapse";
 import IconButton from "@mui/material/IconButton";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
 import Typography from "@mui/material/Typography";
-import Paper from "@mui/material/Paper";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
+import { FaTimes } from "react-icons/fa";
 
-function Row({ rowGroup }) {
+
+function Row({ onDelete, rowGroup }) {
   const [open, setOpen] = React.useState(false);
   return (
     <React.Fragment>
@@ -36,9 +40,6 @@ function Row({ rowGroup }) {
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
           <Collapse in={open} timeout="auto" unmountOnExit>
             <Box sx={{ margin: 1 }}>
-              <Typography variant="h6" gutterBottom component="div">
-                History
-              </Typography>
               <Table size="small" aria-label="purchases">
                 <TableHead>
                   <TableRow>
@@ -53,16 +54,19 @@ function Row({ rowGroup }) {
                 </TableHead>
                 <TableBody>
                   {rowGroup.data.map((row) => (
-                    <TableRow key={row.day}>
+                    <TableRow key={row.id}>
                       <TableCell component="th" scope="row">
-                        {row.day}
+                        {row.id}
                       </TableCell>
-                      <TableCell>{row.volunteerName}</TableCell>
-                      <TableCell>{row.volunteerPhoneNumber}</TableCell>
-                      <TableCell>{row.seniorName}</TableCell>
-                      <TableCell>{row.seniorPhoneNumber}</TableCell>
-                      <TableCell>{row.Time}</TableCell>
-                      <TableCell>{row.phoneNumber}</TableCell>
+                      <TableCell align="left">{row.volunteerName}</TableCell>
+                      <TableCell align="right">{row.volunteerPhoneNumber}</TableCell>
+                      <TableCell align="right">{row.seniorName}</TableCell>
+                      <TableCell align="right">{row.seniorPhoneNumber}</TableCell>
+                      <TableCell align="right">{row.Time}</TableCell>
+                      <TableCell align="right">{row.phoneNumber}</TableCell>
+                      <td>
+                        <FaTimes onClick={() => onDelete(row.id)} />
+                      </td>
                     </TableRow>
                   ))}
                 </TableBody>

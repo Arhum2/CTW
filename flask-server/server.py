@@ -114,12 +114,6 @@ def call():
     call_list = Calls.query.all()
     return {"calls": [call.to_json() for call in call_list]}
     
-@app.route("/day", methods=["GET"])
-def day(day):
-    if request.method=='GET':
-        call_list = Calls.query.with_entities(day)
-        return {"calls": [call.to_json() for call in call_list]}
-
 @app.route("/Availability", methods=["GET"])
 def availability():
     availability_list = Availability.query.all()
